@@ -1,0 +1,548 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> S
+Rule 1     S -> V
+Rule 2     S -> F
+Rule 3     S -> CL
+Rule 4     S -> IF
+Rule 5     S -> M
+Rule 6     V -> AG TP ID VL
+Rule 7     VL -> AS N
+Rule 8     VL -> AS CM ID CM
+Rule 9     VL -> <empty>
+Rule 10    F -> VQ ID PA P PC LA C LC
+Rule 11    P -> TP ID
+Rule 12    CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA C LC
+Rule 13    IF -> VS PA CD PC LA C LC NS LA C LC
+Rule 14    CD -> ID OP ON
+Rule 15    ON -> ID
+Rule 16    ON -> N
+Rule 17    M -> VQ SO PA PC LA C LC
+
+Terminals, with rules where they appear
+
+AG                   : 6
+AS                   : 7 8
+C                    : 10 12 13 13 17
+CM                   : 8 8
+ID                   : 6 8 10 11 12 12 14 15
+IN                   : 12
+LA                   : 10 12 13 13 17
+LC                   : 10 12 13 13 17
+N                    : 7 16
+NS                   : 13
+OP                   : 12 14
+PA                   : 10 12 13 17
+PC                   : 10 12 13 17
+PQ                   : 12
+PT                   : 12 12 12
+SO                   : 17
+TP                   : 6 11
+VQ                   : 10 17
+VS                   : 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+CD                   : 13
+CL                   : 3
+F                    : 2
+IF                   : 4
+M                    : 5
+ON                   : 12 14
+P                    : 10
+S                    : 0
+V                    : 1 12
+VL                   : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . S
+    (1) S -> . V
+    (2) S -> . F
+    (3) S -> . CL
+    (4) S -> . IF
+    (5) S -> . M
+    (6) V -> . AG TP ID VL
+    (10) F -> . VQ ID PA P PC LA C LC
+    (12) CL -> . PQ PA V PT ID OP ON PT ID IN PT PC LA C LC
+    (13) IF -> . VS PA CD PC LA C LC NS LA C LC
+    (17) M -> . VQ SO PA PC LA C LC
+
+    AG              shift and go to state 7
+    VQ              shift and go to state 8
+    PQ              shift and go to state 9
+    VS              shift and go to state 10
+
+    S                              shift and go to state 1
+    V                              shift and go to state 2
+    F                              shift and go to state 3
+    CL                             shift and go to state 4
+    IF                             shift and go to state 5
+    M                              shift and go to state 6
+
+state 1
+
+    (0) S' -> S .
+
+
+
+state 2
+
+    (1) S -> V .
+
+    $end            reduce using rule 1 (S -> V .)
+
+
+state 3
+
+    (2) S -> F .
+
+    $end            reduce using rule 2 (S -> F .)
+
+
+state 4
+
+    (3) S -> CL .
+
+    $end            reduce using rule 3 (S -> CL .)
+
+
+state 5
+
+    (4) S -> IF .
+
+    $end            reduce using rule 4 (S -> IF .)
+
+
+state 6
+
+    (5) S -> M .
+
+    $end            reduce using rule 5 (S -> M .)
+
+
+state 7
+
+    (6) V -> AG . TP ID VL
+
+    TP              shift and go to state 11
+
+
+state 8
+
+    (10) F -> VQ . ID PA P PC LA C LC
+    (17) M -> VQ . SO PA PC LA C LC
+
+    ID              shift and go to state 12
+    SO              shift and go to state 13
+
+
+state 9
+
+    (12) CL -> PQ . PA V PT ID OP ON PT ID IN PT PC LA C LC
+
+    PA              shift and go to state 14
+
+
+state 10
+
+    (13) IF -> VS . PA CD PC LA C LC NS LA C LC
+
+    PA              shift and go to state 15
+
+
+state 11
+
+    (6) V -> AG TP . ID VL
+
+    ID              shift and go to state 16
+
+
+state 12
+
+    (10) F -> VQ ID . PA P PC LA C LC
+
+    PA              shift and go to state 17
+
+
+state 13
+
+    (17) M -> VQ SO . PA PC LA C LC
+
+    PA              shift and go to state 18
+
+
+state 14
+
+    (12) CL -> PQ PA . V PT ID OP ON PT ID IN PT PC LA C LC
+    (6) V -> . AG TP ID VL
+
+    AG              shift and go to state 7
+
+    V                              shift and go to state 19
+
+state 15
+
+    (13) IF -> VS PA . CD PC LA C LC NS LA C LC
+    (14) CD -> . ID OP ON
+
+    ID              shift and go to state 21
+
+    CD                             shift and go to state 20
+
+state 16
+
+    (6) V -> AG TP ID . VL
+    (7) VL -> . AS N
+    (8) VL -> . AS CM ID CM
+    (9) VL -> .
+
+    AS              shift and go to state 23
+    $end            reduce using rule 9 (VL -> .)
+    PT              reduce using rule 9 (VL -> .)
+
+    VL                             shift and go to state 22
+
+state 17
+
+    (10) F -> VQ ID PA . P PC LA C LC
+    (11) P -> . TP ID
+
+    TP              shift and go to state 25
+
+    P                              shift and go to state 24
+
+state 18
+
+    (17) M -> VQ SO PA . PC LA C LC
+
+    PC              shift and go to state 26
+
+
+state 19
+
+    (12) CL -> PQ PA V . PT ID OP ON PT ID IN PT PC LA C LC
+
+    PT              shift and go to state 27
+
+
+state 20
+
+    (13) IF -> VS PA CD . PC LA C LC NS LA C LC
+
+    PC              shift and go to state 28
+
+
+state 21
+
+    (14) CD -> ID . OP ON
+
+    OP              shift and go to state 29
+
+
+state 22
+
+    (6) V -> AG TP ID VL .
+
+    $end            reduce using rule 6 (V -> AG TP ID VL .)
+    PT              reduce using rule 6 (V -> AG TP ID VL .)
+
+
+state 23
+
+    (7) VL -> AS . N
+    (8) VL -> AS . CM ID CM
+
+    N               shift and go to state 30
+    CM              shift and go to state 31
+
+
+state 24
+
+    (10) F -> VQ ID PA P . PC LA C LC
+
+    PC              shift and go to state 32
+
+
+state 25
+
+    (11) P -> TP . ID
+
+    ID              shift and go to state 33
+
+
+state 26
+
+    (17) M -> VQ SO PA PC . LA C LC
+
+    LA              shift and go to state 34
+
+
+state 27
+
+    (12) CL -> PQ PA V PT . ID OP ON PT ID IN PT PC LA C LC
+
+    ID              shift and go to state 35
+
+
+state 28
+
+    (13) IF -> VS PA CD PC . LA C LC NS LA C LC
+
+    LA              shift and go to state 36
+
+
+state 29
+
+    (14) CD -> ID OP . ON
+    (15) ON -> . ID
+    (16) ON -> . N
+
+    ID              shift and go to state 37
+    N               shift and go to state 39
+
+    ON                             shift and go to state 38
+
+state 30
+
+    (7) VL -> AS N .
+
+    $end            reduce using rule 7 (VL -> AS N .)
+    PT              reduce using rule 7 (VL -> AS N .)
+
+
+state 31
+
+    (8) VL -> AS CM . ID CM
+
+    ID              shift and go to state 40
+
+
+state 32
+
+    (10) F -> VQ ID PA P PC . LA C LC
+
+    LA              shift and go to state 41
+
+
+state 33
+
+    (11) P -> TP ID .
+
+    PC              reduce using rule 11 (P -> TP ID .)
+
+
+state 34
+
+    (17) M -> VQ SO PA PC LA . C LC
+
+    C               shift and go to state 42
+
+
+state 35
+
+    (12) CL -> PQ PA V PT ID . OP ON PT ID IN PT PC LA C LC
+
+    OP              shift and go to state 43
+
+
+state 36
+
+    (13) IF -> VS PA CD PC LA . C LC NS LA C LC
+
+    C               shift and go to state 44
+
+
+state 37
+
+    (15) ON -> ID .
+
+    PC              reduce using rule 15 (ON -> ID .)
+    PT              reduce using rule 15 (ON -> ID .)
+
+
+state 38
+
+    (14) CD -> ID OP ON .
+
+    PC              reduce using rule 14 (CD -> ID OP ON .)
+
+
+state 39
+
+    (16) ON -> N .
+
+    PC              reduce using rule 16 (ON -> N .)
+    PT              reduce using rule 16 (ON -> N .)
+
+
+state 40
+
+    (8) VL -> AS CM ID . CM
+
+    CM              shift and go to state 45
+
+
+state 41
+
+    (10) F -> VQ ID PA P PC LA . C LC
+
+    C               shift and go to state 46
+
+
+state 42
+
+    (17) M -> VQ SO PA PC LA C . LC
+
+    LC              shift and go to state 47
+
+
+state 43
+
+    (12) CL -> PQ PA V PT ID OP . ON PT ID IN PT PC LA C LC
+    (15) ON -> . ID
+    (16) ON -> . N
+
+    ID              shift and go to state 37
+    N               shift and go to state 39
+
+    ON                             shift and go to state 48
+
+state 44
+
+    (13) IF -> VS PA CD PC LA C . LC NS LA C LC
+
+    LC              shift and go to state 49
+
+
+state 45
+
+    (8) VL -> AS CM ID CM .
+
+    $end            reduce using rule 8 (VL -> AS CM ID CM .)
+    PT              reduce using rule 8 (VL -> AS CM ID CM .)
+
+
+state 46
+
+    (10) F -> VQ ID PA P PC LA C . LC
+
+    LC              shift and go to state 50
+
+
+state 47
+
+    (17) M -> VQ SO PA PC LA C LC .
+
+    $end            reduce using rule 17 (M -> VQ SO PA PC LA C LC .)
+
+
+state 48
+
+    (12) CL -> PQ PA V PT ID OP ON . PT ID IN PT PC LA C LC
+
+    PT              shift and go to state 51
+
+
+state 49
+
+    (13) IF -> VS PA CD PC LA C LC . NS LA C LC
+
+    NS              shift and go to state 52
+
+
+state 50
+
+    (10) F -> VQ ID PA P PC LA C LC .
+
+    $end            reduce using rule 10 (F -> VQ ID PA P PC LA C LC .)
+
+
+state 51
+
+    (12) CL -> PQ PA V PT ID OP ON PT . ID IN PT PC LA C LC
+
+    ID              shift and go to state 53
+
+
+state 52
+
+    (13) IF -> VS PA CD PC LA C LC NS . LA C LC
+
+    LA              shift and go to state 54
+
+
+state 53
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID . IN PT PC LA C LC
+
+    IN              shift and go to state 55
+
+
+state 54
+
+    (13) IF -> VS PA CD PC LA C LC NS LA . C LC
+
+    C               shift and go to state 56
+
+
+state 55
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN . PT PC LA C LC
+
+    PT              shift and go to state 57
+
+
+state 56
+
+    (13) IF -> VS PA CD PC LA C LC NS LA C . LC
+
+    LC              shift and go to state 58
+
+
+state 57
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN PT . PC LA C LC
+
+    PC              shift and go to state 59
+
+
+state 58
+
+    (13) IF -> VS PA CD PC LA C LC NS LA C LC .
+
+    $end            reduce using rule 13 (IF -> VS PA CD PC LA C LC NS LA C LC .)
+
+
+state 59
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN PT PC . LA C LC
+
+    LA              shift and go to state 60
+
+
+state 60
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA . C LC
+
+    C               shift and go to state 61
+
+
+state 61
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA C . LC
+
+    LC              shift and go to state 62
+
+
+state 62
+
+    (12) CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA C LC .
+
+    $end            reduce using rule 12 (CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA C LC .)
+
