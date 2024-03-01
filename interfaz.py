@@ -17,6 +17,9 @@ def check_code():
     
     if not errores:
         error_table.insert('', 'end', values=("La sintaxis es correcta.",))
+        for token_type, token_value in tokens:
+            token_table.insert('', 'end', values=(token_type, token_value))
+
     else:
         # Muestra los errores en la interfaz gráfica
         for error in errores:
@@ -25,7 +28,6 @@ def check_code():
         # Muestra los tokens en la interfaz gráfica
         for token_type, token_value in tokens:
             token_table.insert('', 'end', values=(token_type, token_value))
-        result_label.config(text="Se encontraron errores de sintaxis.")
 
 # Configuración de la ventana de Tkinter
 root = tk.Tk()
@@ -50,11 +52,11 @@ token_table.heading('Value', text='Valor')
 token_table.pack(fill=tk.BOTH, expand=True)
 
 # Configuración del área para mostrar los errores sintácticos
-error_frame = ttk.LabelFrame(root, text="Errores de Sintaxis")
+error_frame = ttk.LabelFrame(root, text="Mensajes de Sintaxis")
 error_frame.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True, padx=(5, 10), pady=10)
 
 error_table = ttk.Treeview(error_frame, columns=('Error',), show='headings')
-error_table.heading('Error', text='Mensaje de Error')
+error_table.heading('Error', text='Mensajes')
 error_table.pack(fill=tk.BOTH, expand=True)
 
 # Etiqueta para mostrar el resultado del análisis

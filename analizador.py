@@ -13,7 +13,7 @@ tokens = [
     'LA',
     'LC',
     'PT',
-    'OP',
+    'OP',   
     'IN'
 ]
 
@@ -55,9 +55,7 @@ def t_N(t):
     t.value = int(t.value)
     return t
 
-# def p_empty(p):
-#     'empty :'
-#     pass
+
 
 t_ignore = ' \t\n'
 
