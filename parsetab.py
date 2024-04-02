@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AG AS C CM ID IN LA LC N NS OP PA PC PQ PT SO TP TP VQ VSS : V\n            | F\n            | CL\n            | IF\n            | MV : AG TP ID VLVL : AS N\n            | AS CM ID CM\n            | F : VQ ID PA P PC LA C LCP : TP IDCL : PQ PA V PT ID OP ON PT ID IN PT PC LA C LCIF : VS PA CD PC LA C LC NS LA C LCCD : ID OP ONON : ID\n            | NM : VQ SO PA PC LA C LC'
+_lr_signature = 'AG AS CM ID IM IN LA LC N NS OP PA PC PQ PT SO TP TP VQ VSS : V\n            | F\n            | CL\n            | IF\n            | MV : AG TP ID VLVL : AS valorvalor : N\n             | cadena\n             | IDcadena : CM ID CMV : AG TP ID AS valorVL : ID AS valorF : VQ ID PA P PC LA V valor LCIF : VS PA CD PC LA V C LC NS LA C LCCD : ID OP ONP : TP IDCL : PQ PA V PT ID OP ON PT ID IN PT PC LA V C LCON : ID\n            | NM : VQ SO PA PC LA V C LCC : IM PA ID PC'
     
-_lr_action_items = {'AG':([0,14,],[7,7,]),'VQ':([0,],[8,]),'PQ':([0,],[9,]),'VS':([0,],[10,]),'$end':([1,2,3,4,5,6,16,22,30,45,47,50,58,62,],[0,-1,-2,-3,-4,-5,-9,-6,-7,-8,-17,-10,-13,-12,]),'TP':([7,17,],[11,25,]),'ID':([8,11,15,25,27,29,31,43,51,],[12,16,21,33,35,37,40,37,53,]),'SO':([8,],[13,]),'PA':([9,10,12,13,],[14,15,17,18,]),'AS':([16,],[23,]),'PT':([16,19,22,30,37,39,45,48,55,],[-9,27,-6,-7,-15,-16,-8,51,57,]),'PC':([18,20,24,33,37,38,39,57,],[26,28,32,-11,-15,-14,-16,59,]),'OP':([21,35,],[29,43,]),'N':([23,29,43,],[30,39,39,]),'CM':([23,40,],[31,45,]),'LA':([26,28,32,52,59,],[34,36,41,54,60,]),'C':([34,36,41,54,60,],[42,44,46,56,61,]),'LC':([42,44,46,56,61,],[47,49,50,58,62,]),'NS':([49,],[52,]),'IN':([53,],[55,]),}
+_lr_action_items = {'AG':([0,14,39,41,47,73,],[7,7,7,7,7,7,]),'VQ':([0,],[8,]),'PQ':([0,],[9,]),'VS':([0,],[10,]),'$end':([1,2,3,4,5,6,23,32,33,34,35,45,51,58,62,72,76,],[0,-1,-2,-3,-4,-5,-6,-10,-7,-8,-9,-13,-11,-21,-14,-15,-18,]),'TP':([7,17,],[11,26,]),'ID':([8,11,15,16,23,24,26,28,30,31,32,33,34,35,36,45,49,51,52,59,60,],[12,16,21,22,-6,32,38,40,42,32,-10,-7,-8,-9,46,-13,42,-11,32,63,64,]),'SO':([8,],[13,]),'PA':([9,10,12,13,54,],[14,15,17,18,59,]),'AS':([16,22,],[24,31,]),'PC':([18,20,25,38,42,43,44,63,69,],[27,29,37,-17,-19,-16,-20,66,71,]),'PT':([19,23,32,33,34,35,42,44,45,51,55,67,],[28,-6,-10,-7,-8,-9,-19,-20,-13,-11,60,69,]),'OP':([21,40,],[30,49,]),'IM':([23,32,33,34,35,45,48,50,51,68,74,],[-6,-10,-7,-8,-9,-13,54,54,-11,54,54,]),'N':([23,24,30,31,32,33,34,35,45,49,51,52,],[-6,34,44,34,-10,-7,-8,-9,-13,44,-11,34,]),'CM':([23,24,31,32,33,34,35,45,46,51,52,],[-6,36,36,-10,-7,-8,-9,-13,51,-11,36,]),'LA':([27,29,37,65,71,],[39,41,47,68,73,]),'LC':([32,34,35,51,53,56,57,66,70,75,],[-10,-8,-9,-11,58,61,62,-22,72,76,]),'NS':([61,],[65,]),'IN':([64,],[67,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'S':([0,],[1,]),'V':([0,14,],[2,19,]),'F':([0,],[3,]),'CL':([0,],[4,]),'IF':([0,],[5,]),'M':([0,],[6,]),'CD':([15,],[20,]),'VL':([16,],[22,]),'P':([17,],[24,]),'ON':([29,43,],[38,48,]),}
+_lr_goto_items = {'S':([0,],[1,]),'V':([0,14,39,41,47,73,],[2,19,48,50,52,74,]),'F':([0,],[3,]),'CL':([0,],[4,]),'IF':([0,],[5,]),'M':([0,],[6,]),'CD':([15,],[20,]),'VL':([16,],[23,]),'P':([17,],[25,]),'valor':([24,31,52,],[33,45,57,]),'cadena':([24,31,52,],[35,35,35,]),'ON':([30,49,],[43,55,]),'C':([48,50,68,74,],[53,56,70,75,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,21 +27,26 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> S","S'",1,None,None,None),
-  ('S -> V','S',1,'p_S','analizador.py',70),
-  ('S -> F','S',1,'p_S','analizador.py',71),
-  ('S -> CL','S',1,'p_S','analizador.py',72),
-  ('S -> IF','S',1,'p_S','analizador.py',73),
-  ('S -> M','S',1,'p_S','analizador.py',74),
-  ('V -> AG TP ID VL','V',4,'p_V','analizador.py',77),
-  ('VL -> AS N','VL',2,'p_VL','analizador.py',80),
-  ('VL -> AS CM ID CM','VL',4,'p_VL','analizador.py',81),
-  ('VL -> <empty>','VL',0,'p_VL','analizador.py',82),
-  ('F -> VQ ID PA P PC LA C LC','F',8,'p_F','analizador.py',85),
-  ('P -> TP ID','P',2,'p_P','analizador.py',88),
-  ('CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA C LC','CL',15,'p_CL','analizador.py',91),
-  ('IF -> VS PA CD PC LA C LC NS LA C LC','IF',11,'p_IF','analizador.py',94),
-  ('CD -> ID OP ON','CD',3,'p_CD','analizador.py',97),
-  ('ON -> ID','ON',1,'p_ON','analizador.py',100),
-  ('ON -> N','ON',1,'p_ON','analizador.py',101),
-  ('M -> VQ SO PA PC LA C LC','M',7,'p_SO','analizador.py',104),
+  ('S -> V','S',1,'p_S','analizador.py',72),
+  ('S -> F','S',1,'p_S','analizador.py',73),
+  ('S -> CL','S',1,'p_S','analizador.py',74),
+  ('S -> IF','S',1,'p_S','analizador.py',75),
+  ('S -> M','S',1,'p_S','analizador.py',76),
+  ('V -> AG TP ID VL','V',4,'p_V','analizador.py',79),
+  ('VL -> AS valor','VL',2,'p_VL','analizador.py',89),
+  ('valor -> N','valor',1,'p_valor','analizador.py',93),
+  ('valor -> cadena','valor',1,'p_valor','analizador.py',94),
+  ('valor -> ID','valor',1,'p_valor','analizador.py',95),
+  ('cadena -> CM ID CM','cadena',3,'p_cadena','analizador.py',99),
+  ('V -> AG TP ID AS valor','V',5,'p_declaracion_con_asignacion','analizador.py',104),
+  ('VL -> ID AS valor','VL',3,'p_asignacion','analizador.py',114),
+  ('F -> VQ ID PA P PC LA V valor LC','F',9,'p_F','analizador.py',128),
+  ('IF -> VS PA CD PC LA V C LC NS LA C LC','IF',12,'p_IF','analizador.py',137),
+  ('CD -> ID OP ON','CD',3,'p_CD','analizador.py',147),
+  ('P -> TP ID','P',2,'p_P','analizador.py',162),
+  ('CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA V C LC','CL',16,'p_CL','analizador.py',165),
+  ('ON -> ID','ON',1,'p_ON','analizador.py',168),
+  ('ON -> N','ON',1,'p_ON','analizador.py',169),
+  ('M -> VQ SO PA PC LA V C LC','M',8,'p_SO','analizador.py',172),
+  ('C -> IM PA ID PC','C',4,'p_C','analizador.py',175),
 ]

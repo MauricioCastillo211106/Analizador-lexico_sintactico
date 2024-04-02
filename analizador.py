@@ -2,6 +2,8 @@
 # from tkinter import ttk, messagebox
 import ply.lex as lex
 import ply.yacc as yacc
+from analizador_semantico import tabla_simbolos
+
 
 tokens = [
     'ID',
@@ -22,12 +24,12 @@ reserved = {
     'variable':'AG',
     'entero': 'TP',
     'cadena': 'TP',
-    'contenido': 'C',
     'funcion': 'VQ',
     'para': 'PQ',
     'si': 'VS',
     'sino': 'NS',
-    'principal': 'SO'
+    'principal': 'SO',
+    'imprimir' : 'IM'
 }
 
 tokens += list(reserved.values())
@@ -75,34 +77,111 @@ def p_S(p):
 
 def p_V(p):
     '''V : AG TP ID VL'''
-                            
+    tipo = p[2]
+    identificador = p[3]
+    try:
+        tabla_simbolos.agregar(identificador, tipo)
+    except Exception as e:
+        errores.append(str(e))
+
+# Esto maneja la asignación de valores a variables
 def p_VL(p):
-    '''VL : AS N
-            | AS CM ID CM
-            | '''
-               
+    '''VL : AS valor'''
+    # Aquí, `valor` es una nueva regla que necesitas definir basada en lo que tu lenguaje soporta (números, cadenas, etc.)
+
+def p_valor(p):
+    '''valor : N
+             | cadena
+             | ID'''
+    p[0] = p[1]
+
+def p_cadena(p):
+    '''cadena : CM ID CM'''
+    p[0] = p[2]  # Aquí asumimos que quieres capturar el texto entre comillas como un valor de cadena
+
+# Asume que estás declarando una variable y posiblemente asignando un valor inicial
+def p_declaracion_con_asignacion(p):
+    '''V : AG TP ID AS valor'''
+    tipo = p[2]
+    identificador = p[3]
+    valor = p[5]
+    try:
+        tabla_simbolos.agregar(identificador, tipo, valor)  # Asegúrate de que el método agregar ahora maneje un valor
+    except Exception as e:
+        errores.append(str(e))
+
+def p_asignacion(p):
+    '''VL : ID AS valor'''
+    identificador = p[1]
+    valor = p[3]  # Asumiendo que `valor` ya ha sido evaluado a un valor concreto (número, cadena, etc.)
+    print(f"Valor de '{identificador}' actualizado a: {valor}")
+    if identificador in tabla_simbolos.simbolos:
+        # Actualiza el valor de la variable en la tabla de símbolos
+        tabla_simbolos.simbolos[identificador]['valor'] = valor
+        print(f"Valor de '{identificador}' actualizado a: {valor}")
+    else:
+        errores.append(f"Error: Variable '{identificador}' no declarada.")
+
+
+
 def p_F(p):
-    '''F : VQ ID PA P PC LA C LC'''
- 
+    '''F : VQ ID PA P PC LA V C LC'''
+    func_name = p[2]
+    try:
+        # Aquí asumimos que tienes una forma de registrar funciones en tu tabla de símbolos
+        tabla_simbolos.agregar_funcion(func_name)
+    except Exception as e:
+        errores.append(str(e))
+
+def p_IF(p):
+    '''IF : VS PA CD PC LA V C LC NS LA C LC'''
+    # Este ejemplo es simplificado; en la práctica, querrías analizar la condición CD
+    try:
+        cond_var = p[3]  # Asumiendo que p[3] sea una variable/condición
+        if cond_var not in tabla_simbolos:
+            raise Exception(f"Variable '{cond_var}' utilizada en condición no declarada.")
+    except Exception as e:
+        errores.append(str(e))
+
+def p_CD(p):
+    '''CD : ID OP ON'''
+    # Verificar que ID esté declarado y sea del tipo esperado para la operación OP con ON
+    var_name = p[1]
+    operacion = p[2]
+    operando = p[3]  # Podría ser un identificador o un literal
+    try:
+        if var_name not in tabla_simbolos:
+            raise Exception(f"Variable '{var_name}' no declarada.")
+        # Aquí se añadirían más verificaciones específicas según la operación y el tipo de operando
+    except Exception as e:
+        errores.append(str(e))
+
+   
+
 def p_P(p):
     '''P : TP ID'''
     
 def p_CL(p):
-    '''CL : PQ PA V PT ID OP ON PT ID IN PT PC LA C LC'''
+    '''CL : PQ PA V PT ID OP ON PT ID IN PT PC LA V C LC'''
                      
-def p_IF(p):
-    '''IF : VS PA CD PC LA C LC NS LA C LC'''
-          
-def p_CD(p):
-    '''CD : ID OP ON'''
-    
 def p_ON(p):
     '''ON : ID
             | N'''
     
 def p_SO(p):
-    '''M : VQ SO PA PC LA C LC'''
-            
+    '''M : VQ SO PA PC LA V C LC'''
+
+def p_C(p):
+    '''C : IM PA ID PC'''
+    identificador = p[3]  # El identificador de la variable
+    if identificador in tabla_simbolos.simbolos:
+        # Imprime el valor de la variable
+        print(tabla_simbolos.simbolos[identificador]['valor'])
+    else:
+        errores.append(f"Error: Variable '{identificador}' no declarada.")
+
+
+
 def p_error(p):
     if p:
         errores.append(f"Error de sintaxis en '{p.value}'")

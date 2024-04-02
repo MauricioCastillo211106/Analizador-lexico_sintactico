@@ -14,7 +14,7 @@ def check_code():
 
     # Realiza el análisis y obtiene los errores y tokens
     errores, tokens = analizador.analizar(code)  
-    
+    print(errores)
     if not errores:
         error_table.insert('', 'end', values=("La sintaxis es correcta.",))
         for token_type, token_value in tokens:
