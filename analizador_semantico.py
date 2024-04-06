@@ -9,8 +9,8 @@ class TablaDeSimbolos:
         if nombre in self.simbolos:
             raise Exception(f"Error semántico: '{nombre}' ya declarado.")
         self.simbolos[nombre] = {'tipo': tipo, 'valor': valor}
-
-
+        print(f"Variable '{nombre}' agregada correctamente. Tipo: {tipo}, Valor: {valor}")
+        
     def agregar_funcion(self, nombre, tipo_retorno=None, parametros=None):
         if nombre in self.funciones:
             raise Exception(f"Error semántico: Función '{nombre}' ya declarada.")
@@ -39,11 +39,33 @@ class TablaDeSimbolos:
 # Instancia global de la tabla de símbolos
 tabla_simbolos = TablaDeSimbolos()
 
+def verificar_tipo_compatibilidad(tipo_variable, valor):
+    """
+    Verifica si el valor es compatible con el tipo de la variable.
+    """
+    if tipo_variable == "entero":
+        return isinstance(valor, int)
+    elif tipo_variable == "cadena":
+        return isinstance(valor, str)
+    # Aquí puedes agregar más tipos según sea necesario.
+    else:
+        return False
+
 def verificar_asignacion(nombre, valor, linea):
     """
     Verifica la compatibilidad de tipos en una asignación y otros chequeos necesarios.
     """
-    tipo = tabla_simbolos.obtener_tipo(nombre)
-    if tipo is None:
+    tipo_variable = tabla_simbolos.obtener_tipo(nombre)['tipo']  # Asegúrate de obtener solo el tipo de la variable.
+    if tipo_variable is None:
         raise Exception(f"Error semántico en línea {linea}: Variable '{nombre}' no declarada.")
-    # Aquí agregarías más lógica para verificar la asignación dependiendo del tipo y valor.
+    
+    # Si `valor` es un identificador de otra variable, obtén su valor real y tipo.
+    if isinstance(valor, str) and valor in tabla_simbolos.simbolos:
+        valor = tabla_simbolos.simbolos[valor]['valor']
+        tipo_valor = tabla_simbolos.obtener_tipo(valor)['tipo']
+    else:
+        tipo_valor = "entero" if isinstance(valor, int) else "cadena" if isinstance(valor, str) else None
+    
+    # Verificar la compatibilidad de tipo.
+    if not verificar_tipo_compatibilidad(tipo_variable, valor):
+        raise Exception(f"Error semántico en línea {linea}: Incompatibilidad de tipos entre '{nombre}' y el valor asignado.")

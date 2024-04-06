@@ -75,24 +75,10 @@ def p_S(p):
             | IF
             | M'''
 
-def p_V(p):
-    '''V : AG TP ID VL'''
-    tipo = p[2]
-    identificador = p[3]
-    try:
-        tabla_simbolos.agregar(identificador, tipo)
-    except Exception as e:
-        errores.append(str(e))
-
-# Esto maneja la asignación de valores a variables
-def p_VL(p):
-    '''VL : AS valor'''
-    # Aquí, `valor` es una nueva regla que necesitas definir basada en lo que tu lenguaje soporta (números, cadenas, etc.)
-
 def p_valor(p):
     '''valor : N
-             | cadena
-             | ID'''
+                | cadena
+                | ID'''
     p[0] = p[1]
 
 def p_cadena(p):
@@ -101,7 +87,7 @@ def p_cadena(p):
 
 # Asume que estás declarando una variable y posiblemente asignando un valor inicial
 def p_declaracion_con_asignacion(p):
-    '''V : AG TP ID AS valor'''
+    '''V : AG TP ID OP valor'''
     tipo = p[2]
     identificador = p[3]
     valor = p[5]
@@ -109,18 +95,6 @@ def p_declaracion_con_asignacion(p):
         tabla_simbolos.agregar(identificador, tipo, valor)  # Asegúrate de que el método agregar ahora maneje un valor
     except Exception as e:
         errores.append(str(e))
-
-def p_asignacion(p):
-    '''VL : ID AS valor'''
-    identificador = p[1]
-    valor = p[3]  # Asumiendo que `valor` ya ha sido evaluado a un valor concreto (número, cadena, etc.)
-    print(f"Valor de '{identificador}' actualizado a: {valor}")
-    if identificador in tabla_simbolos.simbolos:
-        # Actualiza el valor de la variable en la tabla de símbolos
-        tabla_simbolos.simbolos[identificador]['valor'] = valor
-        print(f"Valor de '{identificador}' actualizado a: {valor}")
-    else:
-        errores.append(f"Error: Variable '{identificador}' no declarada.")
 
 
 
@@ -133,15 +107,12 @@ def p_F(p):
     except Exception as e:
         errores.append(str(e))
 
+
+
 def p_IF(p):
-    '''IF : VS PA CD PC LA V C LC NS LA C LC'''
-    # Este ejemplo es simplificado; en la práctica, querrías analizar la condición CD
-    try:
-        cond_var = p[3]  # Asumiendo que p[3] sea una variable/condición
-        if cond_var not in tabla_simbolos:
-            raise Exception(f"Variable '{cond_var}' utilizada en condición no declarada.")
-    except Exception as e:
-        errores.append(str(e))
+    '''IF : V VS PA CD PC LA V C LC NS LA SL LC'''
+
+
 
 def p_CD(p):
     '''CD : ID OP ON'''
@@ -149,14 +120,21 @@ def p_CD(p):
     var_name = p[1]
     operacion = p[2]
     operando = p[3]  # Podría ser un identificador o un literal
+
+
+
+    #print(type(tabla_simbolos.simbolos))
+    #print(" ")
+    #print(tabla_simbolos.simbolos)
+
     try:
-        if var_name not in tabla_simbolos:
+        if var_name not in tabla_simbolos.simbolos:
             raise Exception(f"Variable '{var_name}' no declarada.")
         # Aquí se añadirían más verificaciones específicas según la operación y el tipo de operando
     except Exception as e:
         errores.append(str(e))
 
-   
+
 
 def p_P(p):
     '''P : TP ID'''
@@ -180,7 +158,10 @@ def p_C(p):
     else:
         errores.append(f"Error: Variable '{identificador}' no declarada.")
 
-
+def p_SL(p):
+    '''SL : IM PA cadena PC'''
+    cadena = p[3]  # La cadena directamente
+    print(cadena)  # Imprime la cadena sin las comillas
 
 def p_error(p):
     if p:

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AG AS CM ID IM IN LA LC N NS OP PA PC PQ PT SO TP TP VQ VSS : V\n            | F\n            | CL\n            | IF\n            | MV : AG TP ID VLVL : AS valorvalor : N\n             | cadena\n             | IDcadena : CM ID CMV : AG TP ID AS valorVL : ID AS valorF : VQ ID PA P PC LA V valor LCIF : VS PA CD PC LA V C LC NS LA C LCCD : ID OP ONP : TP IDCL : PQ PA V PT ID OP ON PT ID IN PT PC LA V C LCON : ID\n            | NM : VQ SO PA PC LA V C LCC : IM PA ID PC'
+_lr_signature = 'AG AS CM ID IM IN LA LC N NS OP PA PC PQ PT SO TP TP VQ VSS : V\n            | F\n            | CL\n            | IF\n            | Mvalor : N\n                | cadena\n                | IDcadena : CM ID CMV : AG TP ID OP valorF : VQ ID PA P PC LA V C LCIF : V VS PA CD PC LA V C LC NS LA SL LCCD : ID OP ONP : TP IDCL : PQ PA V PT ID OP ON PT ID IN PT PC LA V C LCON : ID\n            | NM : VQ SO PA PC LA V C LCC : IM PA ID PCSL : IM PA cadena PC'
     
-_lr_action_items = {'AG':([0,14,39,41,47,73,],[7,7,7,7,7,7,]),'VQ':([0,],[8,]),'PQ':([0,],[9,]),'VS':([0,],[10,]),'$end':([1,2,3,4,5,6,23,32,33,34,35,45,51,58,62,72,76,],[0,-1,-2,-3,-4,-5,-6,-10,-7,-8,-9,-13,-11,-21,-14,-15,-18,]),'TP':([7,17,],[11,26,]),'ID':([8,11,15,16,23,24,26,28,30,31,32,33,34,35,36,45,49,51,52,59,60,],[12,16,21,22,-6,32,38,40,42,32,-10,-7,-8,-9,46,-13,42,-11,32,63,64,]),'SO':([8,],[13,]),'PA':([9,10,12,13,54,],[14,15,17,18,59,]),'AS':([16,22,],[24,31,]),'PC':([18,20,25,38,42,43,44,63,69,],[27,29,37,-17,-19,-16,-20,66,71,]),'PT':([19,23,32,33,34,35,42,44,45,51,55,67,],[28,-6,-10,-7,-8,-9,-19,-20,-13,-11,60,69,]),'OP':([21,40,],[30,49,]),'IM':([23,32,33,34,35,45,48,50,51,68,74,],[-6,-10,-7,-8,-9,-13,54,54,-11,54,54,]),'N':([23,24,30,31,32,33,34,35,45,49,51,52,],[-6,34,44,34,-10,-7,-8,-9,-13,44,-11,34,]),'CM':([23,24,31,32,33,34,35,45,46,51,52,],[-6,36,36,-10,-7,-8,-9,-13,51,-11,36,]),'LA':([27,29,37,65,71,],[39,41,47,68,73,]),'LC':([32,34,35,51,53,56,57,66,70,75,],[-10,-8,-9,-11,58,61,62,-22,72,76,]),'NS':([61,],[65,]),'IN':([64,],[67,]),}
+_lr_action_items = {'AG':([0,14,36,38,43,71,],[7,7,7,7,7,7,]),'VQ':([0,],[8,]),'PQ':([0,],[9,]),'$end':([1,2,3,4,5,6,29,30,31,32,47,54,58,69,76,],[0,-1,-2,-3,-4,-5,-8,-10,-6,-7,-9,-18,-11,-12,-15,]),'VS':([2,29,30,31,32,47,],[10,-8,-10,-6,-7,-9,]),'TP':([7,17,],[11,24,]),'ID':([8,11,15,22,24,26,28,33,45,55,56,],[12,16,21,29,35,37,39,42,39,59,60,]),'SO':([8,],[13,]),'PA':([9,10,12,13,50,67,],[14,15,17,18,55,70,]),'OP':([16,21,37,],[22,28,45,]),'PC':([18,20,23,35,39,40,41,47,59,65,72,],[25,27,34,-14,-16,-13,-17,-9,62,68,74,]),'PT':([19,29,30,31,32,39,41,47,51,63,],[26,-8,-10,-6,-7,-16,-17,-9,56,65,]),'N':([22,28,45,],[31,41,41,]),'CM':([22,42,70,],[33,47,33,]),'LA':([25,27,34,61,68,],[36,38,43,64,71,]),'IM':([29,30,31,32,44,46,47,48,64,73,],[-8,-10,-6,-7,50,50,-9,50,67,50,]),'LC':([49,52,53,62,66,74,75,],[54,57,58,-19,69,-20,76,]),'NS':([57,],[61,]),'IN':([60,],[63,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'S':([0,],[1,]),'V':([0,14,39,41,47,73,],[2,19,48,50,52,74,]),'F':([0,],[3,]),'CL':([0,],[4,]),'IF':([0,],[5,]),'M':([0,],[6,]),'CD':([15,],[20,]),'VL':([16,],[23,]),'P':([17,],[25,]),'valor':([24,31,52,],[33,45,57,]),'cadena':([24,31,52,],[35,35,35,]),'ON':([30,49,],[43,55,]),'C':([48,50,68,74,],[53,56,70,75,]),}
+_lr_goto_items = {'S':([0,],[1,]),'V':([0,14,36,38,43,71,],[2,19,44,46,48,73,]),'F':([0,],[3,]),'CL':([0,],[4,]),'IF':([0,],[5,]),'M':([0,],[6,]),'CD':([15,],[20,]),'P':([17,],[23,]),'valor':([22,],[30,]),'cadena':([22,70,],[32,72,]),'ON':([28,45,],[40,51,]),'C':([44,46,48,73,],[49,52,53,75,]),'SL':([64,],[66,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,21 +32,19 @@ _lr_productions = [
   ('S -> CL','S',1,'p_S','analizador.py',74),
   ('S -> IF','S',1,'p_S','analizador.py',75),
   ('S -> M','S',1,'p_S','analizador.py',76),
-  ('V -> AG TP ID VL','V',4,'p_V','analizador.py',79),
-  ('VL -> AS valor','VL',2,'p_VL','analizador.py',89),
-  ('valor -> N','valor',1,'p_valor','analizador.py',93),
-  ('valor -> cadena','valor',1,'p_valor','analizador.py',94),
-  ('valor -> ID','valor',1,'p_valor','analizador.py',95),
-  ('cadena -> CM ID CM','cadena',3,'p_cadena','analizador.py',99),
-  ('V -> AG TP ID AS valor','V',5,'p_declaracion_con_asignacion','analizador.py',104),
-  ('VL -> ID AS valor','VL',3,'p_asignacion','analizador.py',114),
-  ('F -> VQ ID PA P PC LA V valor LC','F',9,'p_F','analizador.py',128),
-  ('IF -> VS PA CD PC LA V C LC NS LA C LC','IF',12,'p_IF','analizador.py',137),
-  ('CD -> ID OP ON','CD',3,'p_CD','analizador.py',147),
-  ('P -> TP ID','P',2,'p_P','analizador.py',162),
-  ('CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA V C LC','CL',16,'p_CL','analizador.py',165),
-  ('ON -> ID','ON',1,'p_ON','analizador.py',168),
-  ('ON -> N','ON',1,'p_ON','analizador.py',169),
-  ('M -> VQ SO PA PC LA V C LC','M',8,'p_SO','analizador.py',172),
-  ('C -> IM PA ID PC','C',4,'p_C','analizador.py',175),
+  ('valor -> N','valor',1,'p_valor','analizador.py',79),
+  ('valor -> cadena','valor',1,'p_valor','analizador.py',80),
+  ('valor -> ID','valor',1,'p_valor','analizador.py',81),
+  ('cadena -> CM ID CM','cadena',3,'p_cadena','analizador.py',85),
+  ('V -> AG TP ID OP valor','V',5,'p_declaracion_con_asignacion','analizador.py',90),
+  ('F -> VQ ID PA P PC LA V C LC','F',9,'p_F','analizador.py',102),
+  ('IF -> V VS PA CD PC LA V C LC NS LA SL LC','IF',13,'p_IF','analizador.py',113),
+  ('CD -> ID OP ON','CD',3,'p_CD','analizador.py',118),
+  ('P -> TP ID','P',2,'p_P','analizador.py',140),
+  ('CL -> PQ PA V PT ID OP ON PT ID IN PT PC LA V C LC','CL',16,'p_CL','analizador.py',143),
+  ('ON -> ID','ON',1,'p_ON','analizador.py',146),
+  ('ON -> N','ON',1,'p_ON','analizador.py',147),
+  ('M -> VQ SO PA PC LA V C LC','M',8,'p_SO','analizador.py',150),
+  ('C -> IM PA ID PC','C',4,'p_C','analizador.py',153),
+  ('SL -> IM PA cadena PC','SL',4,'p_SL','analizador.py',162),
 ]
