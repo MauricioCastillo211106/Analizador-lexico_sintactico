@@ -2,155 +2,96 @@ import ply.yacc as yacc
 import tkinter as tk
 
 def create_parser(error_table, resust_table, tokens):
-    global variableelse
-    global operado1
-    global numeroIF
-    global valor
-    global numberFun
-    numberFun = None
+    global variableelse, operado1, numeroIF, valor, numberFun, typevar
+
     def p_init(p):
-        '''init : program
-                | opcion2
-                | opcion3
-                | opcion4
-                | ububuefun'''
+        '''init : forpara 
+                    | opcion2 
+                    | opcion3 
+                    | opcion4 
+                    | funcad'''
 
     def p_opcion2(p):
         '''opcion2 : VARIABLE CADENA ID ASSIG ID
                     | VARIABLE ENTERO ID ASSIG NUMB'''
-        global variableelse
-        global valor
         global typevar
-        typevar=p[2]
-        variableelse = p[5]
-        valor = p[3]
-        iden=p[5]
-        if isinstance(iden, int) and p[2]=="entero":
-            resust_table.insert(tk.END, f"Variable declarada '{valor}' con valor '{iden}'\n")
-        elif isinstance(iden, str) and p[2]=="cadena":
-            resust_table.insert(tk.END, f"Variable declarada '{valor}' con valor '{iden}'\n")
+        if isinstance(p[5], int) and p[2] == "entero":
+            resust_table.insert(tk.END, f"Variable declarada '{p[3]}' con valor '{p[5]}'\n")
+        elif isinstance(p[5], str) and p[2] == "cadena":
+            resust_table.insert(tk.END, f"Variable declarada '{p[3]}' con valor '{p[5]}'\n")
         else:
-            resust_table.insert(tk.END, f"sintasis de variable mal '{valor}' con valor '{iden}'\n")
-    def p_var(p):
-        '''var : VARIABLE ENTERO ID ASSIG NUMB'''
-        global variablef
-        global valor3
-        
-        variablef = p[5]
-        valor3 = p[3]
-        resust_table.insert(tk.END, f"Variable declarada '{valor3}' con valor '{variablef}'\n")
-        
+            resust_table.insert(tk.END, f"sintaxis de variable mal '{p[3]}' con valor '{p[5]}'\n")
+        variableelse, valor, typevar = p[5], p[3], p[2]
+
     def p_opcion3(p):
-        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACR'''  
-        global operado1
-        global valor01
-        global var
-        var=p[4]
-        varnumero=p[6]
-        print("soy operando", operado1)
-        
-        # Definir un diccionario que mapea operadores a funciones o condiciones
-        operadores_diccionario = {
-            '>': lambda x, y: x > y,
-            '<': lambda x, y: x < y,
-            '=': lambda x, y: x == y,
-            # Agrega más operadores según sea necesario
-        }
-        if valor!=p[4]:
-             error_table.insert(tk.END, f"variable utilzada no difinida'{var}'\n")
+        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACR'''
+        global valor02, valor03
+        var = p[4]
+        varnumero = p[6]
+        if valor != var:
+            error_table.insert(tk.END, f"variable utilizada no definida '{var}'\n")
         else:
-            print("misdo codision XD ", variableelse)
-            print("misdo codision XD2222 ", numeroIF)
-        #Convertir los valores a números
-            try:
-                num_variable = int(variableelse)
-                num_numeroIF = int(numeroIF)
-            
-            except ValueError:
-                print("Error: Los valores no son números enteros")
-                return
-
-     #    Obtener la función correspondiente al operador
-            funcion_condicional = operadores_diccionario.get(operado1)
-            print("misdo codision XD ", variableelse)
-            print("misdo codision XD2222 ", numeroIF)
-
-            if funcion_condicional is not None:
-                if funcion_condicional(num_variable, num_numeroIF): 
-                    resust_table.insert(tk.END, f"resultado si '{valor02}'\n")
-                else:
-                    print("else ", p[12])
-                    resust_table.insert(tk.END, f"resultado sino '{valor03}'\n")
+            num_variable = int(variableelse)
+            num_numeroIF = int(numeroIF)
+            funcion_condicional = {
+                '>': lambda x, y: x > y,
+                '<': lambda x, y: x < y,
+                '=': lambda x, y: x == y
+            }.get(operado1)
+            if funcion_condicional and funcion_condicional(num_variable, num_numeroIF):
+                resust_table.insert(tk.END, f"resultado si '{valor02}'\n")
             else:
-                print("operando no válido:", operado1)
-
+                resust_table.insert(tk.END, f"resultado sino '{valor03}'\n")
 
     def p_opcion4(p):
         '''opcion4 : FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR'''
-        #  | FUNCION ID PAREL CADENA ID PARER BRACL cualquierFun BRACR
-        
-        print('hola desde fun',typevar)
-        print(variablef,"valor3")
-        print(variableelse, "numif")
-        try:
-                num_variable1 = int(variablef)
-                num_numeroIF = int(variableelse)
-        except ValueError:
-                print("Error: Los valores no son números enteros")
-                return
-        print("numberFun des de",numberFun)
-        if typevar== "entero" and p[12]==valor and p[14]==valor3 and valor!=valor3 and p[5]==p[10] :   
-                   suma= num_variable1 + num_numeroIF
-                   resust_table.insert(tk.END, f"resultado '{suma}'\n")
+        num_variable1 = int(variablef)
+        num_numeroIF = int(variableelse)
+        suma = num_variable1 + num_numeroIF if typevar == "entero" and p[12] == valor and p[14] == valor3 and valor != valor3 and p[5] == p[10] else None
+        if suma:
+            resust_table.insert(tk.END, f"resultado '{suma}'\n")
         else:
-             error_table.insert(tk.END, f"Error, variables utilizadas no declaradas\n")
-    def p_ububuefun(p):
-        '''ububuefun : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR'''
-        if p[5]==p[8]:
-            resust_table.insert(tk.END, f"La variable dio como resultado '{p[10]}'\n") 
+            error_table.insert(tk.END, f"Error, variables utilizadas no declaradas\n")
+
+    def p_funcad(p):
+        '''funcad : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR'''
+        if p[5] == p[8]:
+            resust_table.insert(tk.END, f"La variable dio como resultado '{p[10]}'\n")
         else:
-            error_table.insert(tk.END, f"Error,variable no defida\n")
-              
-    def p_program(p):
-        '''program : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACR'''
-        global user_value
-        global user_value2
-        global number2
-        user_value = p[6]
-        user_value2 = p[10]
-        print("user value", user_value)
-        print("user value2", user_value2)
+            error_table.insert(tk.END, f"Error, variable no definida\n")
+
+    def p_forpara(p):
+        '''forpara : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACR'''
+        global user_value, user_value2, number2
+        user_value, user_value2 = p[6], p[10]
         number2 = user_value2 - user_value
-        print(varfor, "hola soy p3")
-        if varfor== "entero" and p[4]==p[8]: 
-            for _ in range(number2):
-                resust_table.insert(tk.END, f"resultado '{valor01}'\n")
-        else:
-            error_table.insert(tk.END, f"Error detectado\n")
-          
+        for _ in range(number2):
+            resust_table.insert(tk.END, f"resultado '{valor01}'\n")
+
     def p_value(p):
         '''value : CADENA
                     | ENTERO'''
         global varfor
-        varfor=p[1]
+        varfor = p[1]
 
     def p_content(p):
         '''content : CONTENIDO
                      | ID'''
         global valor01
         valor01 = p[1]
+
     def p_contentIF(p):
         '''contentIF : CONTENIDO
                      | ID'''
         global valor02
         valor02 = p[1]
-        
+
     def p_contentELSE(p):
         '''contentELSE : CONTENIDO
                      | ID'''
         global valor03
         valor03 = p[1]
-   
+
     def p_operando(p):
         '''operando : MAY
                     | MAYIG
@@ -166,14 +107,17 @@ def create_parser(error_table, resust_table, tokens):
         '''contentn : ID  
                  | NUMB'''  
         global numeroIF
-        numeroIF = p[1]          
+        numeroIF = p[1]
+
+    def p_var(p):
+        '''var : VARIABLE ENTERO ID ASSIG NUMB'''
+        global variablef, valor3
+        variablef, valor3 = p[5], p[3]
+        resust_table.insert(tk.END, f"Variable declarada '{valor3}' con valor '{variablef}'\n")
 
     def p_error(p):
-        if p:
-            error_table.insert(tk.END, f"Syntax error in token '{p.value}'\n")
-        else:
-            error_table.insert(tk.END, "Syntax error in EOF\n")
+        error = f"Syntax error in token '{p.value}'" if p else "Syntax error at EOF"
+        error_table.insert(tk.END, error + "\n")
 
     parser = yacc.yacc()
-
     return parser
