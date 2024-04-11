@@ -1,0 +1,26 @@
+
+
+#para
+para ( entero i=0; i > 12; i++;){
+contenido
+}
+
+#Variables Numericos
+variable entero variable2 = 3 
+variable entero variable2 = 3 
+
+#Funcion
+funcion edrei ( cadena alex ) {
+alex=algo
+ }
+
+#Variables cadenas
+variable cadena variable2 = hola
+
+#SI/SINO
+variable entero variable1 = 2 
+si(variable1 > 4) {
+contenido1
+} sino {
+contenido}
+
