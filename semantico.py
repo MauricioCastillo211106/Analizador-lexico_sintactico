@@ -39,9 +39,9 @@ def create_parser(error_table, resust_table, tokens):
         num_numeroIF = int(numeroIF)
 
         if funcion_condicional(num_variable, num_numeroIF):
-            resust_table.insert(tk.END, f"Resultado si: {valor02}\n")
+            resust_table.insert(tk.END, f"Resultado si: {num_variable}\n")
         else:
-            resust_table.insert(tk.END, f"Resultado sino: {valor03}\n")
+            resust_table.insert(tk.END, f"Resultado sino: {num_numeroIF}\n")
 
     def p_opcion4(p):
         '''opcion4 : FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR'''
