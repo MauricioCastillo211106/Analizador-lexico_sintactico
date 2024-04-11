@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import scrolledtext
 from tkinter import messagebox
-import checker  # Asegúrate de que este módulo esté implementado correctamente
+import inspector  # Asegúrate de que este módulo esté implementado correctamente
 
 # Inicialización de la ventana principal
 root = tk.Tk()
@@ -11,10 +11,10 @@ root.title("Analizador Léxico, Sintáctico y Semántico")
 root.geometry("800x600")
 
 # Función para realizar el análisis y actualizar las áreas de texto
-def analyze_code():
+def analizador():
     try:
         content = text_code.get("1.0", tk.END)
-        tokens, errors = checker.check_code(content, text_code, text_tokens, text_syntax, text_errors)
+        tokens, errors = inspector.look_code(content, text_code, text_tokens, text_syntax, text_errors)
 
         if tokens:
             text_tokens.insert(tk.END, tokens)
@@ -60,7 +60,7 @@ text_errors = scrolledtext.ScrolledText(root, height=10)
 text_errors.pack(fill=tk.BOTH, expand=True)
 
 # Botón para iniciar el análisis
-button_analyze = tk.Button(root, text="Analizar", command=analyze_code)
+button_analyze = tk.Button(root, text="Analizar", command=analizador)
 button_analyze.pack()
 
 # Carga el código inicial en el área de entrada

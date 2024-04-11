@@ -2,7 +2,7 @@ from lexico import create_lexer
 from semantico import create_parser
 import tkinter as tk
 
-def check_code(interface, txt, token_table, resust_table, error_table):
+def look_code(interface, txt, token_table, resust_table, error_table):
  
     lexer, tokens = create_lexer(error_table) 
     parser = create_parser(error_table, resust_table, tokens)
