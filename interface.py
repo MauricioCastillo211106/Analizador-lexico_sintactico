@@ -3,8 +3,8 @@ from tkinter import messagebox
 import checker
 root = tk.Tk()
 root.title("Lexical, Syntactic, and Semantic Analyzer")
-codigo = '''funcion edrei ( ububue alex ) {
-alex=algo
+codigo = '''funcion imprimir ( cadena prim ) {
+prim=Hola
  }
 '''
 txt = tk.Text(root, width=55, height=10)
