@@ -11,14 +11,15 @@ def reserved_words():
         'sino': 'SINO',
         'funcion': 'FUNCION',
         'siono': 'SIONO',
-        'contenido': 'CONTENIDO'
+        'contenido': 'CONTENIDO',
+        'imprimir':'IMPRIMIR'
     }
 
 def token_definitions():
     return [
-        'DOUBLESTRING', 'ID', 'ENTERO', 'PAREL', 'ID', 'ASSIG', 'NUMB', 'SEMI',
-        'MAY', 'INCR', 'PARER', 'BRACL', 'BRACR', 'STRING', 'MENOS', 'MAS',
-        'MULTI', 'DIV', 'MAYIG', 'MENIG', 'IGIG', 'PUNTOCOMA', 'MENO', 'DIFER', 'COMILLA'
+        'DOUBLESTRING', 'ID', 'ENTERO', 'PAREL', 'ASSIG', 'NUMB', 'SEMI',
+        'MAY', 'INCR', 'PARER', 'BRACL', 'BRACR', 'STRING', 'MAS',
+          'MAYIG', 'MENIG', 'IGIG', 'PUNTOCOMA', 'MENO', 'DIFER', 'COMILLA'
     ] + list(reserved_words().values())
 
 def create_lexer(error_table):
@@ -33,9 +34,6 @@ def create_lexer(error_table):
     t_BRACL = r'{'
     t_BRACR = r'}'
     t_MAS = r'\+'
-    t_MENOS = r'-'
-    t_MULTI = r'\*'
-    t_DIV = r'\\'
     t_MAYIG = r'>='
     t_MENIG = r'<='
     t_IGIG = r'=='

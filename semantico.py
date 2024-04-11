@@ -14,34 +14,34 @@ def create_parser(error_table, resust_table, tokens):
     def p_opcion2(p):
         '''opcion2 : VARIABLE CADENA ID ASSIG ID
                     | VARIABLE ENTERO ID ASSIG NUMB'''
-        global typevar
-        if isinstance(p[5], int) and p[2] == "entero":
-            resust_table.insert(tk.END, f"Variable declarada '{p[3]}' con valor '{p[5]}'\n")
-        elif isinstance(p[5], str) and p[2] == "cadena":
-            resust_table.insert(tk.END, f"Variable declarada '{p[3]}' con valor '{p[5]}'\n")
-        else:
-            resust_table.insert(tk.END, f"sintaxis de variable mal '{p[3]}' con valor '{p[5]}'\n")
-        variableelse, valor, typevar = p[5], p[3], p[2]
+        global variableelse, valorsi
+        variableelse, valorsi = p[5], p[5]
+        resust_table.insert(tk.END, f"Variable declarada '{p[3]}' con valor '{p[5]}'\n")
+
 
     def p_opcion3(p):
-        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACR'''
-        global valor02, valor03
+        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF print BRACR SINO BRACL contentELSE print BRACR'''
         var = p[4]
-        varnumero = p[6]
-        if valor != var:
-            error_table.insert(tk.END, f"variable utilizada no definida '{var}'\n")
+        operador = operado1  # Usar operado1, que debería haber sido definido en p_operando
+
+        print(f"Debug: num_variable = {valorsi}, num_numeroIF = {numeroIF}, operador = {operador}")
+
+        funcion_condicional = {
+            '>': lambda x, y: x > y,
+            '<': lambda x, y: x < y,
+            '=': lambda x, y: x == y,
+            '>=': lambda x, y: x >= y,
+            '<=': lambda x, y: x <= y,
+            '!=': lambda x, y: x != y
+        }.get(operador, lambda x, y: False)
+
+        num_variable = int(valorsi)
+        num_numeroIF = int(numeroIF)
+
+        if funcion_condicional(num_variable, num_numeroIF):
+            resust_table.insert(tk.END, f"Resultado si: {valor02}\n")
         else:
-            num_variable = int(variableelse)
-            num_numeroIF = int(numeroIF)
-            funcion_condicional = {
-                '>': lambda x, y: x > y,
-                '<': lambda x, y: x < y,
-                '=': lambda x, y: x == y
-            }.get(operado1)
-            if funcion_condicional and funcion_condicional(num_variable, num_numeroIF):
-                resust_table.insert(tk.END, f"resultado si '{valor02}'\n")
-            else:
-                resust_table.insert(tk.END, f"resultado sino '{valor03}'\n")
+            resust_table.insert(tk.END, f"Resultado sino: {valor03}\n")
 
     def p_opcion4(p):
         '''opcion4 : FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR'''
@@ -56,41 +56,63 @@ def create_parser(error_table, resust_table, tokens):
     def p_funcad(p):
         '''funcad : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR'''
         if p[5] == p[8]:
-            resust_table.insert(tk.END, f"La variable dio como resultado '{p[10]}'\n")
+            resust_table.insert(tk.END, f"La variable tiene el resultado '{p[10]}'\n")
         else:
             error_table.insert(tk.END, f"Error, variable no definida\n")
 
     def p_forpara(p):
-        '''forpara : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACR'''
+        '''forpara : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content print BRACR'''
         global user_value, user_value2, number2
         user_value, user_value2 = p[6], p[10]
         number2 = user_value2 - user_value
         for _ in range(number2):
-            resust_table.insert(tk.END, f"resultado '{valor01}'\n")
+            resust_table.insert(tk.END, f"resultado '{valor_varsi}'\n")
+
+    def p_forvar(p):
+        '''forvar : VARIABLE CADENA ID ASSIG ID
+                    | VARIABLE ENTERO ID ASSIG NUMB'''
+        global typevar,valor_varsi
+        if isinstance(p[5], int) and p[2] == "entero":
+           valor_varsi=p[5]
+        elif isinstance(p[5], str) and p[2] == "cadena":
+            valor_varsi=p[5]
+        else:
+            resust_table.insert(tk.END, f"sintaxis de variable mal '{p[3]}' con valor '{p[5]}'\n")
+        variableelse, valor, typevar = p[5], p[3], p[2]
+
 
     def p_value(p):
         '''value : CADENA
                     | ENTERO'''
         global varfor
         varfor = p[1]
+    
+    def p_print(p):
+        '''print : IMPRIMIR PAREL ID PARER'''
 
     def p_content(p):
         '''content : CONTENIDO
-                     | ID'''
-        global valor01
+                     | ID
+                     | forvar'''
+        global valor01,valorop2
         valor01 = p[1]
+        valorop2 =valor_varsi
 
     def p_contentIF(p):
         '''contentIF : CONTENIDO
-                     | ID'''
-        global valor02
+                     | ID
+                     | forvar'''
+        global valor02,valorsi
         valor02 = p[1]
+        valorsi=valor_varsi
 
     def p_contentELSE(p):
         '''contentELSE : CONTENIDO
-                     | ID'''
-        global valor03
+                     | ID
+                     | forvar'''
+        global valor03,valorelse
         valor03 = p[1]
+        valorelse =valor_varsi
 
     def p_operando(p):
         '''operando : MAY
@@ -121,3 +143,4 @@ def create_parser(error_table, resust_table, tokens):
 
     parser = yacc.yacc()
     return parser
+
