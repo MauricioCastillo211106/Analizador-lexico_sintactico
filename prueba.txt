@@ -2,7 +2,7 @@
 
 #para
 para ( entero i=0; i > 12; i++;){
-contenido
+imprimir(aa)
 }
 
 #Variables Numericos
@@ -10,8 +10,15 @@ variable entero variable2 = 3
 variable entero variable2 = 3 
 
 #Funcion
-funcion edrei ( cadena alex ) {
-alex=algo
+funcion aaaaaa ( cadena ale ) {
+ale=algo
+imprimir(ale)
+ }
+
+funcion aaaa ( entero prim ) {
+variable entero numero2 = 10
+variable entero numero = 10
+prim = numero2 + numero
  }
 
 #Variables cadenas
@@ -19,8 +26,9 @@ variable cadena variable2 = hola
 
 #SI/SINO
 variable entero variable1 = 2 
-si(variable1 > 4) {
-contenido1
+si(variable1 < 4) {
+imprimir(la)
 } sino {
-contenido}
+imprimir(vaca)
+}
 

@@ -12,7 +12,8 @@ def create_lexer(error_table):
     'sino':'SINO',
     'funcion':'FUNCION',
     'siono':'SIONO',
-    'contenido':'CONTENIDO'
+    'contenido':'CONTENIDO',
+    'imprimir': 'IMPRIMIR'
     }
 
     tokens = [
@@ -63,20 +64,20 @@ def create_lexer(error_table):
     t_DIFER = r'=!'
     t_COMILLA = r'"'    
 
-    def t_ID(t):
-        r'[a-zA-Z_][a-zA-Z_0-9]*'
-        t.type = reserved.get(t.value, 'ID')
-        return t
-
     def t_NUMB(t):
         r'\d+'
         t.value = int(t.value)
         return t
 
-    t_ignore = ' \t\n'
 
+
+    def t_ID(t):
+        r'[a-zA-Z_][a-zA-Z_0-9]*'
+        t.type = reserved.get(t.value, 'ID')
+        return t
+    t_ignore = ' \t\n'
     def t_error(t):
-        error_table.insert(tk.END, f"Illegal character '{t.value[0]}'\n")
+        error_table.insert(tk.END, f"caracter no valido '{t.value[0]}'\n")
         t.lexer.skip(1)
 
     lexer = lex.lex()

@@ -13,7 +13,7 @@ def create_parser(error_table, resust_table, tokens):
                 | opcion2
                 | opcion3
                 | opcion4
-                | ububuefun'''
+                | funcadenaprint'''
 
     def p_opcion2(p):
         '''opcion2 : VARIABLE CADENA ID ASSIG ID
@@ -41,7 +41,7 @@ def create_parser(error_table, resust_table, tokens):
         resust_table.insert(tk.END, f"Variable declarada '{valor3}' con valor '{variablef}'\n")
         
     def p_opcion3(p):
-        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACR'''  
+        '''opcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR'''  
         global operado1
         global valor01
         global var
@@ -99,20 +99,22 @@ def create_parser(error_table, resust_table, tokens):
                 print("Error: Los valores no son números enteros")
                 return
         print("numberFun des de",numberFun)
+        print(p[14],valor3)
         if typevar== "entero" and p[12]==valor and p[14]==valor3 and valor!=valor3 and p[5]==p[10] :   
                    suma= num_variable1 + num_numeroIF
                    resust_table.insert(tk.END, f"resultado '{suma}'\n")
         else:
              error_table.insert(tk.END, f"Error, variables utilizadas no declaradas\n")
-    def p_ububuefun(p):
-        '''ububuefun : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR'''
-        if p[5]==p[8]:
+
+    def p_funcadenaprint(p):
+        '''funcadenaprint : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR'''
+        if p[5]==p[8]==p[13]:
             resust_table.insert(tk.END, f"La variable dio como resultado '{p[10]}'\n") 
         else:
             error_table.insert(tk.END, f"Error,variable no defida\n")
               
     def p_program(p):
-        '''program : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACR'''
+        '''program : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR'''
         global user_value
         global user_value2
         global number2

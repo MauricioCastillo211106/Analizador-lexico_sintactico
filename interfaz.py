@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import scrolledtext
 from tkinter import messagebox
-import checker  # Asegúrate de que este módulo esté implementado correctamente
+import revisor  # Asegúrate de que este módulo esté implementado correctamente
 
 # Inicialización de la ventana principal
 root = tk.Tk()
@@ -14,7 +14,7 @@ root.geometry("800x600")
 def analyze_code():
     try:
         content = text_code.get("1.0", tk.END)
-        tokens, errors = checker.check_code(content, text_code, text_tokens, text_syntax, text_errors)
+        tokens, errors = revisor.check_code(content, text_code, text_tokens, text_syntax, text_errors)
 
         if tokens:
             text_tokens.insert(tk.END, tokens)

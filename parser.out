@@ -1,0 +1,925 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMILLA
+    DIV
+    DOUBLESTRING
+    MENOS
+    MULTI
+    SEMI
+    SIONO
+    STRING
+
+Grammar
+
+Rule 0     S' -> init
+Rule 1     init -> program
+Rule 2     init -> opcion2
+Rule 3     init -> opcion3
+Rule 4     init -> opcion4
+Rule 5     init -> funcadenaprint
+Rule 6     opcion2 -> VARIABLE CADENA ID ASSIG ID
+Rule 7     opcion2 -> VARIABLE ENTERO ID ASSIG NUMB
+Rule 8     var -> VARIABLE ENTERO ID ASSIG NUMB
+Rule 9     opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+Rule 10    opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+Rule 11    funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+Rule 12    program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+Rule 13    value -> CADENA
+Rule 14    value -> ENTERO
+Rule 15    content -> CONTENIDO
+Rule 16    content -> ID
+Rule 17    contentIF -> CONTENIDO
+Rule 18    contentIF -> ID
+Rule 19    contentELSE -> CONTENIDO
+Rule 20    contentELSE -> ID
+Rule 21    operando -> MAY
+Rule 22    operando -> MAYIG
+Rule 23    operando -> MENIG
+Rule 24    operando -> IGIG
+Rule 25    operando -> MENO
+Rule 26    operando -> DIFER
+Rule 27    operando -> ASSIG
+Rule 28    contentn -> ID
+Rule 29    contentn -> NUMB
+
+Terminals, with rules where they appear
+
+ASSIG                : 6 7 8 10 11 12 27
+BRACL                : 9 9 10 11 12
+BRACR                : 9 9 10 11 12
+CADENA               : 6 11 13
+COMILLA              : 
+CONTENIDO            : 15 17 19
+DIFER                : 26
+DIV                  : 
+DOUBLESTRING         : 
+ENTERO               : 7 8 10 14
+FUNCION              : 10 11
+ID                   : 6 6 7 8 9 10 10 10 10 10 11 11 11 11 11 12 12 12 16 18 20 28
+IGIG                 : 24
+IMPRIMIR             : 9 9 11 12
+INCR                 : 12
+MAS                  : 10
+MAY                  : 21
+MAYIG                : 22
+MENIG                : 23
+MENO                 : 25
+MENOS                : 
+MULTI                : 
+NUMB                 : 7 8 12 12 29
+PARA                 : 12
+PAREL                : 9 9 9 10 11 11 12 12
+PARER                : 9 9 9 10 11 11 12 12
+PUNTOCOMA            : 12 12 12
+SEMI                 : 
+SI                   : 9
+SINO                 : 9
+SIONO                : 
+STRING               : 
+VARIABLE             : 6 7 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+content              : 12
+contentELSE          : 9
+contentIF            : 9
+contentn             : 9
+funcadenaprint       : 5
+init                 : 0
+opcion2              : 2 9 10
+opcion3              : 3
+opcion4              : 4
+operando             : 9 12
+program              : 1
+value                : 12
+var                  : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . init
+    (1) init -> . program
+    (2) init -> . opcion2
+    (3) init -> . opcion3
+    (4) init -> . opcion4
+    (5) init -> . funcadenaprint
+    (12) program -> . PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+    (6) opcion2 -> . VARIABLE CADENA ID ASSIG ID
+    (7) opcion2 -> . VARIABLE ENTERO ID ASSIG NUMB
+    (9) opcion3 -> . opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+    (10) opcion4 -> . FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+    (11) funcadenaprint -> . FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    PARA            shift and go to state 7
+    VARIABLE        shift and go to state 8
+    FUNCION         shift and go to state 9
+
+    init                           shift and go to state 1
+    program                        shift and go to state 2
+    opcion2                        shift and go to state 3
+    opcion3                        shift and go to state 4
+    opcion4                        shift and go to state 5
+    funcadenaprint                 shift and go to state 6
+
+state 1
+
+    (0) S' -> init .
+
+
+
+state 2
+
+    (1) init -> program .
+
+    $end            reduce using rule 1 (init -> program .)
+
+
+state 3
+
+    (2) init -> opcion2 .
+    (9) opcion3 -> opcion2 . SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    $end            reduce using rule 2 (init -> opcion2 .)
+    SI              shift and go to state 10
+
+
+state 4
+
+    (3) init -> opcion3 .
+
+    $end            reduce using rule 3 (init -> opcion3 .)
+
+
+state 5
+
+    (4) init -> opcion4 .
+
+    $end            reduce using rule 4 (init -> opcion4 .)
+
+
+state 6
+
+    (5) init -> funcadenaprint .
+
+    $end            reduce using rule 5 (init -> funcadenaprint .)
+
+
+state 7
+
+    (12) program -> PARA . PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    PAREL           shift and go to state 11
+
+
+state 8
+
+    (6) opcion2 -> VARIABLE . CADENA ID ASSIG ID
+    (7) opcion2 -> VARIABLE . ENTERO ID ASSIG NUMB
+
+    CADENA          shift and go to state 12
+    ENTERO          shift and go to state 13
+
+
+state 9
+
+    (10) opcion4 -> FUNCION . ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+    (11) funcadenaprint -> FUNCION . ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    ID              shift and go to state 14
+
+
+state 10
+
+    (9) opcion3 -> opcion2 SI . PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    PAREL           shift and go to state 15
+
+
+state 11
+
+    (12) program -> PARA PAREL . value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+    (13) value -> . CADENA
+    (14) value -> . ENTERO
+
+    CADENA          shift and go to state 17
+    ENTERO          shift and go to state 18
+
+    value                          shift and go to state 16
+
+state 12
+
+    (6) opcion2 -> VARIABLE CADENA . ID ASSIG ID
+
+    ID              shift and go to state 19
+
+
+state 13
+
+    (7) opcion2 -> VARIABLE ENTERO . ID ASSIG NUMB
+
+    ID              shift and go to state 20
+
+
+state 14
+
+    (10) opcion4 -> FUNCION ID . PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+    (11) funcadenaprint -> FUNCION ID . PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    PAREL           shift and go to state 21
+
+
+state 15
+
+    (9) opcion3 -> opcion2 SI PAREL . ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    ID              shift and go to state 22
+
+
+state 16
+
+    (12) program -> PARA PAREL value . ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    ID              shift and go to state 23
+
+
+state 17
+
+    (13) value -> CADENA .
+
+    ID              reduce using rule 13 (value -> CADENA .)
+
+
+state 18
+
+    (14) value -> ENTERO .
+
+    ID              reduce using rule 14 (value -> ENTERO .)
+
+
+state 19
+
+    (6) opcion2 -> VARIABLE CADENA ID . ASSIG ID
+
+    ASSIG           shift and go to state 24
+
+
+state 20
+
+    (7) opcion2 -> VARIABLE ENTERO ID . ASSIG NUMB
+
+    ASSIG           shift and go to state 25
+
+
+state 21
+
+    (10) opcion4 -> FUNCION ID PAREL . ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+    (11) funcadenaprint -> FUNCION ID PAREL . CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    ENTERO          shift and go to state 26
+    CADENA          shift and go to state 27
+
+
+state 22
+
+    (9) opcion3 -> opcion2 SI PAREL ID . operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+    (21) operando -> . MAY
+    (22) operando -> . MAYIG
+    (23) operando -> . MENIG
+    (24) operando -> . IGIG
+    (25) operando -> . MENO
+    (26) operando -> . DIFER
+    (27) operando -> . ASSIG
+
+    MAY             shift and go to state 29
+    MAYIG           shift and go to state 30
+    MENIG           shift and go to state 31
+    IGIG            shift and go to state 32
+    MENO            shift and go to state 33
+    DIFER           shift and go to state 34
+    ASSIG           shift and go to state 35
+
+    operando                       shift and go to state 28
+
+state 23
+
+    (12) program -> PARA PAREL value ID . ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    ASSIG           shift and go to state 36
+
+
+state 24
+
+    (6) opcion2 -> VARIABLE CADENA ID ASSIG . ID
+
+    ID              shift and go to state 37
+
+
+state 25
+
+    (7) opcion2 -> VARIABLE ENTERO ID ASSIG . NUMB
+
+    NUMB            shift and go to state 38
+
+
+state 26
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO . ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+
+    ID              shift and go to state 39
+
+
+state 27
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA . ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    ID              shift and go to state 40
+
+
+state 28
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando . contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+    (28) contentn -> . ID
+    (29) contentn -> . NUMB
+
+    ID              shift and go to state 41
+    NUMB            shift and go to state 43
+
+    contentn                       shift and go to state 42
+
+state 29
+
+    (21) operando -> MAY .
+
+    ID              reduce using rule 21 (operando -> MAY .)
+    NUMB            reduce using rule 21 (operando -> MAY .)
+
+
+state 30
+
+    (22) operando -> MAYIG .
+
+    ID              reduce using rule 22 (operando -> MAYIG .)
+    NUMB            reduce using rule 22 (operando -> MAYIG .)
+
+
+state 31
+
+    (23) operando -> MENIG .
+
+    ID              reduce using rule 23 (operando -> MENIG .)
+    NUMB            reduce using rule 23 (operando -> MENIG .)
+
+
+state 32
+
+    (24) operando -> IGIG .
+
+    ID              reduce using rule 24 (operando -> IGIG .)
+    NUMB            reduce using rule 24 (operando -> IGIG .)
+
+
+state 33
+
+    (25) operando -> MENO .
+
+    ID              reduce using rule 25 (operando -> MENO .)
+    NUMB            reduce using rule 25 (operando -> MENO .)
+
+
+state 34
+
+    (26) operando -> DIFER .
+
+    ID              reduce using rule 26 (operando -> DIFER .)
+    NUMB            reduce using rule 26 (operando -> DIFER .)
+
+
+state 35
+
+    (27) operando -> ASSIG .
+
+    ID              reduce using rule 27 (operando -> ASSIG .)
+    NUMB            reduce using rule 27 (operando -> ASSIG .)
+
+
+state 36
+
+    (12) program -> PARA PAREL value ID ASSIG . NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    NUMB            shift and go to state 44
+
+
+state 37
+
+    (6) opcion2 -> VARIABLE CADENA ID ASSIG ID .
+
+    SI              reduce using rule 6 (opcion2 -> VARIABLE CADENA ID ASSIG ID .)
+    $end            reduce using rule 6 (opcion2 -> VARIABLE CADENA ID ASSIG ID .)
+    VARIABLE        reduce using rule 6 (opcion2 -> VARIABLE CADENA ID ASSIG ID .)
+
+
+state 38
+
+    (7) opcion2 -> VARIABLE ENTERO ID ASSIG NUMB .
+
+    SI              reduce using rule 7 (opcion2 -> VARIABLE ENTERO ID ASSIG NUMB .)
+    $end            reduce using rule 7 (opcion2 -> VARIABLE ENTERO ID ASSIG NUMB .)
+    VARIABLE        reduce using rule 7 (opcion2 -> VARIABLE ENTERO ID ASSIG NUMB .)
+
+
+state 39
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID . PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+
+    PARER           shift and go to state 45
+
+
+state 40
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID . PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    PARER           shift and go to state 46
+
+
+state 41
+
+    (28) contentn -> ID .
+
+    PARER           reduce using rule 28 (contentn -> ID .)
+
+
+state 42
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn . PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    PARER           shift and go to state 47
+
+
+state 43
+
+    (29) contentn -> NUMB .
+
+    PARER           reduce using rule 29 (contentn -> NUMB .)
+
+
+state 44
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB . PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    PUNTOCOMA       shift and go to state 48
+
+
+state 45
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER . BRACL opcion2 var ID ASSIG ID MAS ID BRACR
+
+    BRACL           shift and go to state 49
+
+
+state 46
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER . BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    BRACL           shift and go to state 50
+
+
+state 47
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER . BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    BRACL           shift and go to state 51
+
+
+state 48
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA . ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    ID              shift and go to state 52
+
+
+state 49
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL . opcion2 var ID ASSIG ID MAS ID BRACR
+    (6) opcion2 -> . VARIABLE CADENA ID ASSIG ID
+    (7) opcion2 -> . VARIABLE ENTERO ID ASSIG NUMB
+
+    VARIABLE        shift and go to state 8
+
+    opcion2                        shift and go to state 53
+
+state 50
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL . ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    ID              shift and go to state 54
+
+
+state 51
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL . IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    IMPRIMIR        shift and go to state 55
+
+
+state 52
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID . operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+    (21) operando -> . MAY
+    (22) operando -> . MAYIG
+    (23) operando -> . MENIG
+    (24) operando -> . IGIG
+    (25) operando -> . MENO
+    (26) operando -> . DIFER
+    (27) operando -> . ASSIG
+
+    MAY             shift and go to state 29
+    MAYIG           shift and go to state 30
+    MENIG           shift and go to state 31
+    IGIG            shift and go to state 32
+    MENO            shift and go to state 33
+    DIFER           shift and go to state 34
+    ASSIG           shift and go to state 35
+
+    operando                       shift and go to state 56
+
+state 53
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 . var ID ASSIG ID MAS ID BRACR
+    (8) var -> . VARIABLE ENTERO ID ASSIG NUMB
+
+    VARIABLE        shift and go to state 58
+
+    var                            shift and go to state 57
+
+state 54
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID . ASSIG ID IMPRIMIR PAREL ID PARER BRACR
+
+    ASSIG           shift and go to state 59
+
+
+state 55
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR . PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    PAREL           shift and go to state 60
+
+
+state 56
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando . NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    NUMB            shift and go to state 61
+
+
+state 57
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var . ID ASSIG ID MAS ID BRACR
+
+    ID              shift and go to state 62
+
+
+state 58
+
+    (8) var -> VARIABLE . ENTERO ID ASSIG NUMB
+
+    ENTERO          shift and go to state 63
+
+
+state 59
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG . ID IMPRIMIR PAREL ID PARER BRACR
+
+    ID              shift and go to state 64
+
+
+state 60
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL . contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+    (17) contentIF -> . CONTENIDO
+    (18) contentIF -> . ID
+
+    CONTENIDO       shift and go to state 67
+    ID              shift and go to state 65
+
+    contentIF                      shift and go to state 66
+
+state 61
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB . PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    PUNTOCOMA       shift and go to state 68
+
+
+state 62
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID . ASSIG ID MAS ID BRACR
+
+    ASSIG           shift and go to state 69
+
+
+state 63
+
+    (8) var -> VARIABLE ENTERO . ID ASSIG NUMB
+
+    ID              shift and go to state 70
+
+
+state 64
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID . IMPRIMIR PAREL ID PARER BRACR
+
+    IMPRIMIR        shift and go to state 71
+
+
+state 65
+
+    (18) contentIF -> ID .
+
+    PARER           reduce using rule 18 (contentIF -> ID .)
+
+
+state 66
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF . PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    PARER           shift and go to state 72
+
+
+state 67
+
+    (17) contentIF -> CONTENIDO .
+
+    PARER           reduce using rule 17 (contentIF -> CONTENIDO .)
+
+
+state 68
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA . ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    ID              shift and go to state 73
+
+
+state 69
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG . ID MAS ID BRACR
+
+    ID              shift and go to state 74
+
+
+state 70
+
+    (8) var -> VARIABLE ENTERO ID . ASSIG NUMB
+
+    ASSIG           shift and go to state 75
+
+
+state 71
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR . PAREL ID PARER BRACR
+
+    PAREL           shift and go to state 76
+
+
+state 72
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER . BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    BRACR           shift and go to state 77
+
+
+state 73
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID . INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    INCR            shift and go to state 78
+
+
+state 74
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID . MAS ID BRACR
+
+    MAS             shift and go to state 79
+
+
+state 75
+
+    (8) var -> VARIABLE ENTERO ID ASSIG . NUMB
+
+    NUMB            shift and go to state 80
+
+
+state 76
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL . ID PARER BRACR
+
+    ID              shift and go to state 81
+
+
+state 77
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR . SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    SINO            shift and go to state 82
+
+
+state 78
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR . PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    PUNTOCOMA       shift and go to state 83
+
+
+state 79
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS . ID BRACR
+
+    ID              shift and go to state 84
+
+
+state 80
+
+    (8) var -> VARIABLE ENTERO ID ASSIG NUMB .
+
+    ID              reduce using rule 8 (var -> VARIABLE ENTERO ID ASSIG NUMB .)
+
+
+state 81
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID . PARER BRACR
+
+    PARER           shift and go to state 85
+
+
+state 82
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO . BRACL IMPRIMIR PAREL contentELSE PARER BRACR
+
+    BRACL           shift and go to state 86
+
+
+state 83
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA . PARER BRACL IMPRIMIR PAREL content PARER BRACR
+
+    PARER           shift and go to state 87
+
+
+state 84
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID . BRACR
+
+    BRACR           shift and go to state 88
+
+
+state 85
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER . BRACR
+
+    BRACR           shift and go to state 89
+
+
+state 86
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL . IMPRIMIR PAREL contentELSE PARER BRACR
+
+    IMPRIMIR        shift and go to state 90
+
+
+state 87
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER . BRACL IMPRIMIR PAREL content PARER BRACR
+
+    BRACL           shift and go to state 91
+
+
+state 88
+
+    (10) opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR .
+
+    $end            reduce using rule 10 (opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR .)
+
+
+state 89
+
+    (11) funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR .
+
+    $end            reduce using rule 11 (funcadenaprint -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID IMPRIMIR PAREL ID PARER BRACR .)
+
+
+state 90
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR . PAREL contentELSE PARER BRACR
+
+    PAREL           shift and go to state 92
+
+
+state 91
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL . IMPRIMIR PAREL content PARER BRACR
+
+    IMPRIMIR        shift and go to state 93
+
+
+state 92
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL . contentELSE PARER BRACR
+    (19) contentELSE -> . CONTENIDO
+    (20) contentELSE -> . ID
+
+    CONTENIDO       shift and go to state 96
+    ID              shift and go to state 94
+
+    contentELSE                    shift and go to state 95
+
+state 93
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR . PAREL content PARER BRACR
+
+    PAREL           shift and go to state 97
+
+
+state 94
+
+    (20) contentELSE -> ID .
+
+    PARER           reduce using rule 20 (contentELSE -> ID .)
+
+
+state 95
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE . PARER BRACR
+
+    PARER           shift and go to state 98
+
+
+state 96
+
+    (19) contentELSE -> CONTENIDO .
+
+    PARER           reduce using rule 19 (contentELSE -> CONTENIDO .)
+
+
+state 97
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL . content PARER BRACR
+    (15) content -> . CONTENIDO
+    (16) content -> . ID
+
+    CONTENIDO       shift and go to state 101
+    ID              shift and go to state 99
+
+    content                        shift and go to state 100
+
+state 98
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER . BRACR
+
+    BRACR           shift and go to state 102
+
+
+state 99
+
+    (16) content -> ID .
+
+    PARER           reduce using rule 16 (content -> ID .)
+
+
+state 100
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content . PARER BRACR
+
+    PARER           shift and go to state 103
+
+
+state 101
+
+    (15) content -> CONTENIDO .
+
+    PARER           reduce using rule 15 (content -> CONTENIDO .)
+
+
+state 102
+
+    (9) opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR .
+
+    $end            reduce using rule 9 (opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL IMPRIMIR PAREL contentIF PARER BRACR SINO BRACL IMPRIMIR PAREL contentELSE PARER BRACR .)
+
+
+state 103
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER . BRACR
+
+    BRACR           shift and go to state 104
+
+
+state 104
+
+    (12) program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR .
+
+    $end            reduce using rule 12 (program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL IMPRIMIR PAREL content PARER BRACR .)
+
