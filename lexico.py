@@ -1,29 +1,47 @@
-import tkinter as tk
 import ply.lex as lex
-
-def reserved_words():
-    return {
-        'entero': 'ENTERO',
-        'para': 'PARA',
-        'variable': 'VARIABLE',
-        'cadena': 'CADENA',
-        'si': 'SI',
-        'sino': 'SINO',
-        'funcion': 'FUNCION',
-        'siono': 'SIONO',
-        'contenido': 'CONTENIDO',
-        'imprimir':'IMPRIMIR'
-    }
-
-def token_definitions():
-    return [
-        'DOUBLESTRING', 'ID', 'ENTERO', 'PAREL', 'ASSIG', 'NUMB', 'SEMI',
-        'MAY', 'INCR', 'PARER', 'BRACL', 'BRACR', 'STRING', 'MAS',
-          'MAYIG', 'MENIG', 'IGIG', 'PUNTOCOMA', 'MENO', 'DIFER', 'COMILLA'
-    ] + list(reserved_words().values())
+import tkinter as tk
 
 def create_lexer(error_table):
-    tokens = token_definitions()
+    # Define reserved words
+    reserved = {
+    'entero':'ENTERO',
+    'para':'PARA',
+    'variable':'VARIABLE',
+    'cadena':'CADENA',
+    'si':'SI',
+    'sino':'SINO',
+    'funcion':'FUNCION',
+    'siono':'SIONO',
+    'contenido':'CONTENIDO'
+    }
+
+    tokens = [
+        'DOUBLESTRING',
+        'ID',
+        'ENTERO',
+        'PAREL',
+        'ID',
+        'ASSIG',
+        'NUMB',
+        'SEMI',
+        'MAY',
+        'INCR',
+        'PARER',
+        'BRACL',
+        'BRACR',
+        'STRING',
+        'MENOS',
+        'MAS',
+        'MULTI',
+        'DIV',
+        'MAYIG',
+        'MENIG',
+        'IGIG',
+        'PUNTOCOMA',
+        'MENO',
+        'DIFER',
+        'COMILLA'
+    ] + list(reserved.values())
 
     t_DOUBLESTRING = r'"[^"]*"'
     t_PAREL = r'\('
@@ -34,17 +52,20 @@ def create_lexer(error_table):
     t_BRACL = r'{'
     t_BRACR = r'}'
     t_MAS = r'\+'
+    t_MENOS = r'-'
+    t_MULTI = r'\*'
+    t_DIV = r'\\'
     t_MAYIG = r'>='
     t_MENIG = r'<='
     t_IGIG = r'=='
     t_PUNTOCOMA = r';'
     t_MENO = r'<'
-    t_DIFER = r'!='
+    t_DIFER = r'=!'
     t_COMILLA = r'"'    
 
     def t_ID(t):
         r'[a-zA-Z_][a-zA-Z_0-9]*'
-        t.type = reserved_words().get(t.value, 'ID')
+        t.type = reserved.get(t.value, 'ID')
         return t
 
     def t_NUMB(t):
@@ -60,4 +81,4 @@ def create_lexer(error_table):
 
     lexer = lex.lex()
 
-    return lexer, tokens
+    return lexer,tokens

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ASSIG BRACL BRACR CADENA COMILLA CONTENIDO DIFER DOUBLESTRING ENTERO ENTERO FUNCION ID IGIG IMPRIMIR INCR MAS MAY MAYIG MENIG MENO NUMB PARA PAREL PARER PUNTOCOMA SEMI SI SINO SIONO STRING VARIABLEinit : forpara \n                    | opcion2 \n                    | opcion3 \n                    | opcion4 \n                    | funcadopcion2 : VARIABLE CADENA ID ASSIG ID\n                    | VARIABLE ENTERO ID ASSIG NUMBopcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF print BRACR SINO BRACL contentELSE print BRACRopcion4 : FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACRfuncad : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACRforpara : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content print BRACRforvar : VARIABLE CADENA ID ASSIG ID\n                    | VARIABLE ENTERO ID ASSIG NUMBvalue : CADENA\n                    | ENTEROprint : IMPRIMIR PAREL ID PARERcontent : CONTENIDO\n                     | ID\n                     | forvarcontentIF : CONTENIDO\n                     | ID\n                     | forvarcontentELSE : CONTENIDO\n                     | ID\n                     | forvaroperando : MAY\n                    | MAYIG\n                    | MENIG\n                    | IGIG\n                    | MENO\n                    | DIFER\n                    | ASSIGcontentn : ID  \n                 | NUMBvar : VARIABLE ENTERO ID ASSIG NUMB'
+_lr_signature = 'ASSIG BRACL BRACR CADENA COMILLA CONTENIDO DIFER DIV DOUBLESTRING ENTERO ENTERO FUNCION ID ID IGIG INCR MAS MAY MAYIG MENIG MENO MENOS MULTI NUMB PARA PAREL PARER PUNTOCOMA SEMI SI SINO SIONO STRING VARIABLEinit : program\n                | opcion2\n                | opcion3\n                | opcion4\n                | ububuefunopcion2 : VARIABLE CADENA ID ASSIG ID\n                    | VARIABLE ENTERO ID ASSIG NUMBvar : VARIABLE ENTERO ID ASSIG NUMBopcion3 : opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACRopcion4 : FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACRububuefun : FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACRprogram : PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACRvalue : CADENA\n                    | ENTEROcontent : CONTENIDO\n                     | IDcontentIF : CONTENIDO\n                     | IDcontentELSE : CONTENIDO\n                     | IDoperando : MAY\n                    | MAYIG\n                    | MENIG\n                    | IGIG\n                    | MENO\n                    | DIFER\n                    | ASSIGcontentn : ID  \n                 | NUMB'
     
-_lr_action_items = {'PARA':([0,],[7,]),'VARIABLE':([0,37,38,49,51,53,87,104,],[8,-6,-7,8,59,62,59,59,]),'FUNCION':([0,],[9,]),'$end':([1,2,3,4,5,6,37,38,79,102,103,110,],[0,-1,-2,-3,-4,-5,-6,-7,-10,-9,-8,-11,]),'SI':([3,37,38,],[10,-6,-7,]),'PAREL':([7,10,14,65,],[11,15,21,73,]),'CADENA':([8,11,21,59,],[12,17,27,66,]),'ENTERO':([8,11,21,59,62,],[13,18,26,67,70,]),'ID':([9,12,13,15,16,17,18,24,26,27,28,29,30,31,32,33,34,35,48,50,51,61,63,66,67,70,73,76,77,82,87,92,93,104,],[14,19,20,22,23,-14,-15,37,39,40,41,-26,-27,-28,-29,-30,-31,-32,52,54,55,69,71,74,75,78,81,84,85,89,94,99,-35,105,]),'ASSIG':([19,20,22,23,52,54,69,74,75,78,],[24,25,35,36,35,63,77,82,83,86,]),'MAY':([22,52,],[29,29,]),'MAYIG':([22,52,],[30,30,]),'MENIG':([22,52,],[31,31,]),'IGIG':([22,52,],[32,32,]),'MENO':([22,52,],[33,33,]),'DIFER':([22,52,],[34,34,]),'NUMB':([25,28,29,30,31,32,33,34,35,36,60,83,86,],[38,43,-26,-27,-28,-29,-30,-31,-32,44,68,90,93,]),'PARER':([39,40,41,42,43,81,98,],[45,46,-33,47,-34,88,101,]),'PUNTOCOMA':([44,68,91,],[48,76,98,]),'BRACL':([45,46,47,80,101,],[49,50,51,87,104,]),'CONTENIDO':([51,87,104,],[57,96,107,]),'IMPRIMIR':([55,56,57,58,89,90,94,95,96,97,105,106,107,108,],[-21,65,-20,-22,-12,-13,-24,65,-23,-25,-18,65,-17,-19,]),'BRACR':([64,71,88,99,100,109,],[72,79,-16,102,103,110,]),'SINO':([72,],[80,]),'INCR':([84,],[91,]),'MAS':([85,],[92,]),}
+_lr_action_items = {'PARA':([0,],[7,]),'VARIABLE':([0,37,38,49,53,],[8,-6,-7,8,60,]),'FUNCION':([0,],[9,]),'$end':([1,2,3,4,5,6,37,38,71,82,86,91,],[0,-1,-2,-3,-4,-5,-6,-7,-11,-9,-10,-12,]),'SI':([3,37,38,],[10,-6,-7,]),'PAREL':([7,10,14,],[11,15,21,]),'CADENA':([8,11,21,],[12,17,27,]),'ENTERO':([8,11,21,60,],[13,18,26,65,]),'ID':([9,12,13,15,16,17,18,24,26,27,28,29,30,31,32,33,34,35,48,50,51,59,61,65,68,69,72,80,81,87,],[14,19,20,22,23,-13,-14,37,39,40,41,-21,-22,-23,-24,-25,-26,-27,52,54,55,64,66,70,73,74,76,84,-8,88,]),'ASSIG':([19,20,22,23,52,54,64,70,],[24,25,35,36,35,61,69,75,]),'MAY':([22,52,],[29,29,]),'MAYIG':([22,52,],[30,30,]),'MENIG':([22,52,],[31,31,]),'IGIG':([22,52,],[32,32,]),'MENO':([22,52,],[33,33,]),'DIFER':([22,52,],[34,34,]),'NUMB':([25,28,29,30,31,32,33,34,35,36,58,75,],[38,43,-21,-22,-23,-24,-25,-26,-27,44,63,81,]),'PARER':([39,40,41,42,43,83,],[45,46,-28,47,-29,85,]),'PUNTOCOMA':([44,63,79,],[48,68,83,]),'BRACL':([45,46,47,67,85,],[49,50,51,72,87,]),'CONTENIDO':([51,72,87,],[57,78,90,]),'BRACR':([55,56,57,66,76,77,78,84,88,89,90,],[-18,62,-17,71,-20,82,-19,86,-16,91,-15,]),'SINO':([62,],[67,]),'INCR':([73,],[79,]),'MAS':([74,],[80,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'init':([0,],[1,]),'forpara':([0,],[2,]),'opcion2':([0,49,],[3,53,]),'opcion3':([0,],[4,]),'opcion4':([0,],[5,]),'funcad':([0,],[6,]),'value':([11,],[16,]),'operando':([22,52,],[28,60,]),'contentn':([28,],[42,]),'contentIF':([51,],[56,]),'forvar':([51,87,104,],[58,97,108,]),'var':([53,],[61,]),'print':([56,95,106,],[64,100,109,]),'contentELSE':([87,],[95,]),'content':([104,],[106,]),}
+_lr_goto_items = {'init':([0,],[1,]),'program':([0,],[2,]),'opcion2':([0,49,],[3,53,]),'opcion3':([0,],[4,]),'opcion4':([0,],[5,]),'ububuefun':([0,],[6,]),'value':([11,],[16,]),'operando':([22,52,],[28,58,]),'contentn':([28,],[42,]),'contentIF':([51,],[56,]),'var':([53,],[59,]),'contentELSE':([72,],[77,]),'content':([87,],[89,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,39 +27,33 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> init","S'",1,None,None,None),
-  ('init -> forpara','init',1,'p_init','semantico.py',8),
-  ('init -> opcion2','init',1,'p_init','semantico.py',9),
-  ('init -> opcion3','init',1,'p_init','semantico.py',10),
-  ('init -> opcion4','init',1,'p_init','semantico.py',11),
-  ('init -> funcad','init',1,'p_init','semantico.py',12),
-  ('opcion2 -> VARIABLE CADENA ID ASSIG ID','opcion2',5,'p_opcion2','semantico.py',15),
-  ('opcion2 -> VARIABLE ENTERO ID ASSIG NUMB','opcion2',5,'p_opcion2','semantico.py',16),
-  ('opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL contentIF print BRACR SINO BRACL contentELSE print BRACR','opcion3',16,'p_opcion3','semantico.py',23),
-  ('opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR','opcion4',15,'p_opcion4','semantico.py',44),
-  ('funcad -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR','funcad',11,'p_funcad','semantico.py',54),
-  ('forpara -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content print BRACR','forpara',19,'p_forpara','semantico.py',61),
-  ('forvar -> VARIABLE CADENA ID ASSIG ID','forvar',5,'p_forvar','semantico.py',69),
-  ('forvar -> VARIABLE ENTERO ID ASSIG NUMB','forvar',5,'p_forvar','semantico.py',70),
-  ('value -> CADENA','value',1,'p_value','semantico.py',82),
-  ('value -> ENTERO','value',1,'p_value','semantico.py',83),
-  ('print -> IMPRIMIR PAREL ID PARER','print',4,'p_print','semantico.py',88),
-  ('content -> CONTENIDO','content',1,'p_content','semantico.py',91),
-  ('content -> ID','content',1,'p_content','semantico.py',92),
-  ('content -> forvar','content',1,'p_content','semantico.py',93),
-  ('contentIF -> CONTENIDO','contentIF',1,'p_contentIF','semantico.py',99),
-  ('contentIF -> ID','contentIF',1,'p_contentIF','semantico.py',100),
-  ('contentIF -> forvar','contentIF',1,'p_contentIF','semantico.py',101),
-  ('contentELSE -> CONTENIDO','contentELSE',1,'p_contentELSE','semantico.py',107),
-  ('contentELSE -> ID','contentELSE',1,'p_contentELSE','semantico.py',108),
-  ('contentELSE -> forvar','contentELSE',1,'p_contentELSE','semantico.py',109),
-  ('operando -> MAY','operando',1,'p_operando','semantico.py',115),
-  ('operando -> MAYIG','operando',1,'p_operando','semantico.py',116),
-  ('operando -> MENIG','operando',1,'p_operando','semantico.py',117),
-  ('operando -> IGIG','operando',1,'p_operando','semantico.py',118),
-  ('operando -> MENO','operando',1,'p_operando','semantico.py',119),
-  ('operando -> DIFER','operando',1,'p_operando','semantico.py',120),
-  ('operando -> ASSIG','operando',1,'p_operando','semantico.py',121),
-  ('contentn -> ID','contentn',1,'p_contentn','semantico.py',126),
-  ('contentn -> NUMB','contentn',1,'p_contentn','semantico.py',127),
-  ('var -> VARIABLE ENTERO ID ASSIG NUMB','var',5,'p_var','semantico.py',132),
+  ('init -> program','init',1,'p_init','semantico.py',12),
+  ('init -> opcion2','init',1,'p_init','semantico.py',13),
+  ('init -> opcion3','init',1,'p_init','semantico.py',14),
+  ('init -> opcion4','init',1,'p_init','semantico.py',15),
+  ('init -> ububuefun','init',1,'p_init','semantico.py',16),
+  ('opcion2 -> VARIABLE CADENA ID ASSIG ID','opcion2',5,'p_opcion2','semantico.py',19),
+  ('opcion2 -> VARIABLE ENTERO ID ASSIG NUMB','opcion2',5,'p_opcion2','semantico.py',20),
+  ('var -> VARIABLE ENTERO ID ASSIG NUMB','var',5,'p_var','semantico.py',35),
+  ('opcion3 -> opcion2 SI PAREL ID operando contentn PARER BRACL contentIF BRACR SINO BRACL contentELSE BRACR','opcion3',14,'p_opcion3','semantico.py',44),
+  ('opcion4 -> FUNCION ID PAREL ENTERO ID PARER BRACL opcion2 var ID ASSIG ID MAS ID BRACR','opcion4',15,'p_opcion4','semantico.py',89),
+  ('ububuefun -> FUNCION ID PAREL CADENA ID PARER BRACL ID ASSIG ID BRACR','ububuefun',11,'p_ububuefun','semantico.py',108),
+  ('program -> PARA PAREL value ID ASSIG NUMB PUNTOCOMA ID operando NUMB PUNTOCOMA ID INCR PUNTOCOMA PARER BRACL content BRACR','program',18,'p_program','semantico.py',115),
+  ('value -> CADENA','value',1,'p_value','semantico.py',132),
+  ('value -> ENTERO','value',1,'p_value','semantico.py',133),
+  ('content -> CONTENIDO','content',1,'p_content','semantico.py',138),
+  ('content -> ID','content',1,'p_content','semantico.py',139),
+  ('contentIF -> CONTENIDO','contentIF',1,'p_contentIF','semantico.py',143),
+  ('contentIF -> ID','contentIF',1,'p_contentIF','semantico.py',144),
+  ('contentELSE -> CONTENIDO','contentELSE',1,'p_contentELSE','semantico.py',149),
+  ('contentELSE -> ID','contentELSE',1,'p_contentELSE','semantico.py',150),
+  ('operando -> MAY','operando',1,'p_operando','semantico.py',155),
+  ('operando -> MAYIG','operando',1,'p_operando','semantico.py',156),
+  ('operando -> MENIG','operando',1,'p_operando','semantico.py',157),
+  ('operando -> IGIG','operando',1,'p_operando','semantico.py',158),
+  ('operando -> MENO','operando',1,'p_operando','semantico.py',159),
+  ('operando -> DIFER','operando',1,'p_operando','semantico.py',160),
+  ('operando -> ASSIG','operando',1,'p_operando','semantico.py',161),
+  ('contentn -> ID','contentn',1,'p_contentn','semantico.py',166),
+  ('contentn -> NUMB','contentn',1,'p_contentn','semantico.py',167),
 ]
